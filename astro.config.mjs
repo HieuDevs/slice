@@ -2,10 +2,13 @@
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
+import vercel from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
+  output: 'server',
+  adapter: vercel(),
   integrations: [mdx(), sitemap()],
 
   server: {
@@ -29,7 +32,7 @@ export default defineConfig({
       PUBLIC_DEFAULT_LANG: {
         context: 'client',
         type: 'string',
-        default: 'en',
+        default: 'vi',
         access: 'public',
       },
     },

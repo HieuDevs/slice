@@ -1,7 +1,8 @@
 ---
 import { defaultLang } from "../i18n";
 
+export const prerender = false;
+
 // Middleware handles cookie-based redirect
-// This page just redirects to default language as fallback
 return Astro.redirect(`/${defaultLang}`);
 ---
