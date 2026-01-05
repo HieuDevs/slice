@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Lexend:wght@400;500;600;700;800&display=swap");
+@import "tailwindcss";
+@config "../../tailwind.config.mjs";
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply font-sans antialiased;
+  }
+
+  ::selection {
+    @apply bg-slice-400/30 text-slice-900 dark:text-slice-100;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-slice-500 text-white font-medium rounded-full
+           hover:bg-slice-600 transition-all duration-300 hover:shadow-glow hover:-translate-y-0.5;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-dark-900 dark:bg-cream-100 text-white dark:text-dark-900 font-medium rounded-full
+           hover:bg-dark-800 dark:hover:bg-cream-200 transition-all duration-300 hover:-translate-y-0.5;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-6 py-3 border-2 border-dark-900 dark:border-cream-200 text-dark-900 dark:text-cream-100 font-medium rounded-full
+           hover:bg-dark-900 dark:hover:bg-cream-100 hover:text-white dark:hover:text-dark-900 transition-all duration-300;
+  }
+
+  .card {
+    @apply bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card transition-all duration-300 hover:shadow-card-hover;
+  }
+
+  .section-title {
+    @apply font-display text-4xl md:text-5xl lg:text-6xl font-bold text-dark-900 dark:text-cream-100 tracking-tight;
+  }
+
+  .section-subtitle {
+    @apply text-lg md:text-xl text-dark-500 dark:text-dark-300 max-w-2xl;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-slice-500 via-slice-400 to-slice-600 bg-clip-text text-transparent;
+  }
+
+  .nav-link {
+    @apply relative text-dark-600 dark:text-dark-300 hover:text-dark-900 dark:hover:text-cream-100 transition-colors duration-300
+           after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-slice-500
+           after:transition-all after:duration-300 hover:after:w-full;
+  }
+
+  .nav-link-active {
+    @apply text-dark-900 dark:text-cream-100 after:w-full;
+  }
+
+  /* Language switcher với <details> */
+  .language-switcher summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .language-switcher summary::marker {
+    display: none;
+  }
+}
+
+@layer utilities {
+  .animation-delay-100 {
+    animation-delay: 100ms;
+  }
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+  .animation-delay-500 {
+    animation-delay: 500ms;
+  }
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+}

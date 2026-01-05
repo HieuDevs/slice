@@ -1,0 +1,293 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import {
+  languages,
+  useTranslations,
+  getLocalizedPath,
+  type Language,
+} from "../../i18n";
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => ({
+    params: { lang },
+  }));
+}
+
+// Get lang from URL params (SSG-safe, no headers needed)
+const { lang } = Astro.params as { lang: Language };
+const t = useTranslations(lang);
+
+const blogPosts = [
+  {
+    id: 1,
+    title: "The Future of Mobile App Development in 2024",
+    excerpt:
+      "Explore the latest trends and technologies shaping the mobile app landscape, from AI integration to cross-platform solutions.",
+    image:
+      "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&h=400&fit=crop",
+    category: t("blog.category.technology"),
+    author: "Alex Chen",
+    date: "Dec 15, 2024",
+    readTime: "5 min read",
+  },
+  {
+    id: 2,
+    title: "Building Scalable Applications: Lessons Learned",
+    excerpt:
+      "Discover the key principles and best practices we follow to build applications that can grow with your user base.",
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
+    category: t("blog.category.engineering"),
+    author: "Sarah Kim",
+    date: "Dec 10, 2024",
+    readTime: "8 min read",
+  },
+  {
+    id: 3,
+    title: "Design Systems: Creating Consistency at Scale",
+    excerpt:
+      "How we built our design system to ensure a consistent user experience across all our products and platforms.",
+    image:
+      "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop",
+    category: t("blog.category.design"),
+    author: "Mike Johnson",
+    date: "Dec 5, 2024",
+    readTime: "6 min read",
+  },
+  {
+    id: 4,
+    title: "User Research: Understanding Your Audience",
+    excerpt:
+      "A deep dive into our user research methodology and how it shapes every decision we make in product development.",
+    image:
+      "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&h=400&fit=crop",
+    category: t("blog.category.product"),
+    author: "Emma Wilson",
+    date: "Nov 28, 2024",
+    readTime: "7 min read",
+  },
+  {
+    id: 5,
+    title: "From Idea to Launch: Our Development Process",
+    excerpt:
+      "Take a behind-the-scenes look at how we transform ideas into fully-fledged products that users love.",
+    image:
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop",
+    category: t("blog.category.process"),
+    author: "David Park",
+    date: "Nov 20, 2024",
+    readTime: "10 min read",
+  },
+  {
+    id: 6,
+    title: "The Importance of Performance Optimization",
+    excerpt:
+      "Why we obsess over milliseconds and how performance optimization impacts user satisfaction and retention.",
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+    category: t("blog.category.engineering"),
+    author: "Alex Chen",
+    date: "Nov 15, 2024",
+    readTime: "6 min read",
+  },
+];
+
+const categories = [
+  t("blog.category.all"),
+  t("blog.category.technology"),
+  t("blog.category.engineering"),
+  t("blog.category.design"),
+  t("blog.category.product"),
+  t("blog.category.process"),
+];
+---
+
+<Layout
+  title="Blog - Slice"
+  currentPath={getLocalizedPath("/blogs", lang)}
+  lang={lang}
+>
+  <section
+    class="py-24 bg-gradient-to-b from-cream-100 to-cream-50 dark:from-dark-900 dark:to-dark-950"
+  >
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <div
+          class="inline-flex items-center gap-2 px-4 py-2 bg-slice-100 dark:bg-slice-900/30 rounded-full text-slice-700 dark:text-slice-400 font-medium text-sm mb-6 opacity-0 animate-fade-in"
+        >
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
+            ></path>
+          </svg>
+          {t("blog.badge")}
+        </div>
+        <h1
+          class="section-title mb-4 opacity-0 animate-slide-up animation-delay-100"
+        >
+          {t("blog.title")}
+          <span class="gradient-text">{t("blog.titleHighlight")}</span>
+        </h1>
+        <p
+          class="section-subtitle mx-auto opacity-0 animate-slide-up animation-delay-200"
+        >
+          {t("blog.subtitle")}
+        </p>
+      </div>
+
+      <div
+        class="flex flex-wrap justify-center gap-3 mb-12 opacity-0 animate-slide-up animation-delay-300"
+      >
+        {
+          categories.map((category, index) => (
+            <button
+              class:list={[
+                "px-5 py-2 rounded-full font-medium transition-all duration-300",
+                index === 0
+                  ? "bg-dark-900 dark:bg-slice-500 text-white"
+                  : "bg-white dark:bg-dark-800 text-dark-600 dark:text-dark-300 hover:bg-dark-900 dark:hover:bg-slice-500 hover:text-white shadow-sm",
+              ]}
+            >
+              {category}
+            </button>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-cream-50 dark:bg-dark-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {
+          blogPosts.map((post, index) => (
+            <article
+              class="card group cursor-pointer overflow-hidden p-0 opacity-0 animate-slide-up"
+              style={`animation-delay: ${index * 100}ms`}
+            >
+              <div class="relative overflow-hidden">
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  class="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div class="absolute top-4 left-4">
+                  <span class="px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-sm font-medium text-dark-700">
+                    {post.category}
+                  </span>
+                </div>
+              </div>
+              <div class="p-6">
+                <div class="flex items-center gap-4 text-sm text-dark-400 mb-3">
+                  <span>{post.date}</span>
+                  <span>•</span>
+                  <span>{post.readTime}</span>
+                </div>
+                <h2 class="font-display text-xl font-bold text-dark-900 dark:text-cream-100 mb-3 group-hover:text-slice-600 dark:group-hover:text-slice-400 transition-colors line-clamp-2">
+                  {post.title}
+                </h2>
+                <p class="text-dark-500 dark:text-dark-400 leading-relaxed mb-4 line-clamp-2">
+                  {post.excerpt}
+                </p>
+                <div class="flex items-center justify-between pt-4 border-t border-cream-200 dark:border-dark-700">
+                  <span class="text-sm font-medium text-dark-600 dark:text-dark-300">
+                    {post.author}
+                  </span>
+                  <span class="text-slice-500 font-medium text-sm group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                    {t("blog.readMore")}
+                    <svg
+                      class="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <div class="text-center mt-16">
+        <button class="btn-outline">
+          {t("blog.loadMore")}
+          <svg
+            class="w-4 h-4 ml-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white dark:bg-dark-900">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div
+        class="bg-gradient-to-r from-slice-500 to-slice-600 rounded-3xl p-12 text-white relative overflow-hidden"
+      >
+        <div
+          class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2"
+        >
+        </div>
+        <div
+          class="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2"
+        >
+        </div>
+        <div class="relative">
+          <h3 class="font-display text-3xl font-bold mb-4">
+            {t("blog.newsletter.title")}
+          </h3>
+          <p class="text-white/80 mb-8 max-w-md mx-auto">
+            {t("blog.newsletter.desc")}
+          </p>
+          <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+            <input
+              type="email"
+              placeholder={t("blog.newsletter.placeholder")}
+              class="flex-1 px-5 py-3 rounded-full bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50"
+            />
+            <button
+              type="submit"
+              class="px-6 py-3 bg-white text-slice-600 font-medium rounded-full hover:bg-cream-100 transition-colors"
+            >
+              {t("blog.newsletter.button")}
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
