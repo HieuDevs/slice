@@ -75,6 +75,13 @@ export const ui = {
     'about.cta.description': "We're always looking for talented individuals who share our passion for building great products.",
     'about.cta.button': 'View Open Positions',
 
+    // About page - Team members
+    'about.team.hieu.bio': 'Full-stack wizard who loves elegant solutions. Believes in code that reads like poetry and building products that matter.',
+    'about.team.nhi.bio': 'Strategic marketer with a passion for brand storytelling. Transforms insights into impactful campaigns that resonate.',
+    'about.team.hung.bio': 'Visionary marketing leader driving growth and brand awareness. Expert in digital strategies and team leadership.',
+    'about.team.son.bio': 'Creative designer crafting pixel-perfect experiences. Design is not just how it looks, but how it works.',
+    'about.team.phu.bio': 'Visual storyteller bringing ideas to life. Passionate about creating beautiful and intuitive user interfaces.',
+
     // Blog page
     'blog.badge': 'Our Blog',
     'blog.title': 'Insights &',
@@ -180,6 +187,13 @@ export const ui = {
     'about.cta.titleHighlight': 'đội ngũ',
     'about.cta.description': 'Chúng tôi luôn tìm kiếm những cá nhân tài năng chia sẻ niềm đam mê xây dựng sản phẩm tuyệt vời.',
     'about.cta.button': 'Xem vị trí tuyển dụng',
+
+    // About page - Team members
+    'about.team.hieu.bio': 'Chuyên gia full-stack yêu thích các giải pháp tinh tế. Tin rằng code phải đọc như thơ và xây dựng sản phẩm có ý nghĩa.',
+    'about.team.nhi.bio': 'Nhà tiếp thị chiến lược với niềm đam mê kể chuyện thương hiệu. Biến đổi thông tin chi tiết thành các chiến dịch có tác động và cộng hưởng.',
+    'about.team.hung.bio': 'Lãnh đạo tiếp thị có tầm nhìn thúc đẩy tăng trưởng và nhận thức thương hiệu. Chuyên gia về chiến lược kỹ thuật số và lãnh đạo nhóm.',
+    'about.team.son.bio': 'Nhà thiết kế sáng tạo tạo ra trải nghiệm hoàn hảo từng pixel. Thiết kế không chỉ là cách nó trông như thế nào, mà còn là cách nó hoạt động.',
+    'about.team.phu.bio': 'Người kể chuyện trực quan biến ý tưởng thành hiện thực. Đam mê tạo ra giao diện người dùng đẹp và trực quan.',
 
     // Blog page
     'blog.badge': 'Blog của chúng tôi',

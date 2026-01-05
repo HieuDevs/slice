@@ -6,6 +6,7 @@ import {
   getLocalizedPath,
   type Language,
 } from "../../i18n";
+import testPng from "../../assets/test.png";
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => ({
@@ -19,69 +20,74 @@ const t = useTranslations(lang);
 
 const teamMembers = [
   {
-    name: "Alex Chen",
-    role: "CEO & Co-Founder",
-    bio: "Visionary leader with 10+ years in tech. Previously at Google and Stripe. Passionate about building products that matter.",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+    name: "Hieu Bui",
+    role: "CTO & Founder",
+    bioKey: "about.team.hieu.bio",
+    image: testPng.src,
     social: {
       twitter: "#",
       linkedin: "#",
       github: "#",
     },
     color: "from-slice-400 to-slice-600",
+    borderColor: "border-slice-400",
+    borderHoverColor: "group-hover:border-slice-500",
   },
   {
-    name: "Sarah Kim",
-    role: "CTO & Co-Founder",
-    bio: "Full-stack wizard who loves elegant solutions. Ex-Meta engineer. Believes in code that reads like poetry.",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop&crop=face",
+    name: "Nhi Bao",
+    role: "Marketing Manager",
+    bioKey: "about.team.nhi.bio",
+    image: testPng.src,
     social: {
       twitter: "#",
       linkedin: "#",
       github: "#",
     },
     color: "from-purple-400 to-purple-600",
+    borderColor: "border-purple-400",
+    borderHoverColor: "group-hover:border-purple-500",
   },
   {
-    name: "Mike Johnson",
-    role: "Head of Design",
-    bio: "Award-winning designer crafting pixel-perfect experiences. Former design lead at Airbnb. Design is not just how it looks, but how it works.",
-    image:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
+    name: "Hung Ngo",
+    role: "Marketing Leader",
+    bioKey: "about.team.hung.bio",
+    image: testPng.src,
     social: {
       twitter: "#",
       linkedin: "#",
       github: "#",
     },
     color: "from-emerald-400 to-emerald-600",
+    borderColor: "border-emerald-400",
+    borderHoverColor: "group-hover:border-emerald-500",
   },
   {
-    name: "Emma Wilson",
-    role: "Product Manager",
-    bio: "User advocate turning insights into features. Stanford MBA. Obsessed with understanding what users really need.",
-    image:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face",
+    name: "Son Minh",
+    role: "Designer",
+    bioKey: "about.team.son.bio",
+    image: testPng.src,
     social: {
       twitter: "#",
       linkedin: "#",
       github: "#",
     },
     color: "from-rose-400 to-rose-600",
+    borderColor: "border-rose-400",
+    borderHoverColor: "group-hover:border-rose-500",
   },
   {
-    name: "David Park",
-    role: "Lead Engineer",
-    bio: "Backend architect who makes systems sing. Open source contributor. Believes the best code is no code at all.",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face",
+    name: "Phu Minh",
+    role: "Designer",
+    bioKey: "about.team.phu.bio",
+    image: testPng.src,
     social: {
       twitter: "#",
       linkedin: "#",
       github: "#",
     },
     color: "from-blue-400 to-blue-600",
+    borderColor: "border-blue-400",
+    borderHoverColor: "group-hover:border-blue-500",
   },
 ];
 
@@ -158,42 +164,49 @@ const values = [
 
   <section class="py-20 bg-cream-50 dark:bg-dark-950">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+      <div
+        class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 lg:gap-5"
+      >
         {
-          teamMembers.slice(0, 3).map((member, index) => (
+          teamMembers.map((member, index) => (
             <div
               class="group relative opacity-0 animate-slide-up"
               style={`animation-delay: ${index * 100}ms`}
             >
-              <div class="absolute -inset-1 bg-gradient-to-r {member.color} rounded-3xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-500" />
-              <div class="relative bg-white dark:bg-dark-800 rounded-3xl overflow-hidden shadow-card group-hover:shadow-card-hover transition-all duration-500">
-                <div class="relative h-72 overflow-hidden">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div
-                    class={`absolute inset-0 bg-gradient-to-t ${member.color} opacity-0 group-hover:opacity-20 transition-opacity duration-500`}
-                  />
-                  <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 to-transparent">
-                    <h3 class="font-display text-2xl font-bold text-white">
+              <div
+                class={`relative rounded-xl overflow-hidden shadow-card group-hover:shadow-card-hover transition-all duration-500 border-2 border-transparent ${member.borderHoverColor} aspect-[3/4]`}
+              >
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div
+                  class={`absolute inset-0 bg-gradient-to-t ${member.color} opacity-60 group-hover:opacity-70 transition-opacity duration-500`}
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+
+                <div class="absolute inset-0 flex flex-col justify-between p-4">
+                  <div class="flex flex-col items-center text-center mt-auto">
+                    <h3 class="font-display text-lg font-bold text-white mb-1">
                       {member.name}
                     </h3>
-                    <p class="text-white/80">{member.role}</p>
+                    <p class="text-white/90 text-xs font-medium mb-2">
+                      {member.role}
+                    </p>
+                    <p class="text-white/80 text-xs leading-relaxed mb-4">
+                      {t(member.bioKey as any)}
+                    </p>
                   </div>
-                </div>
-                <div class="p-6">
-                  <p class="text-dark-500 dark:text-dark-400 leading-relaxed mb-6">
-                    {member.bio}
-                  </p>
-                  <div class="flex gap-3">
+
+                  <div class="flex justify-center gap-2 pt-3 border-t border-white/20">
                     <a
                       href={member.social.twitter}
-                      class="w-10 h-10 bg-cream-100 dark:bg-dark-700 hover:bg-slice-500 hover:text-white rounded-full flex items-center justify-center text-dark-400 transition-all duration-300"
+                      class="w-8 h-8 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center text-white transition-all duration-300 group/social"
+                      aria-label="Twitter"
                     >
                       <svg
-                        class="w-5 h-5"
+                        class="w-4 h-4 transition-transform duration-300 group-hover/social:scale-110"
                         fill="currentColor"
                         viewBox="0 0 24 24"
                       >
@@ -202,10 +215,11 @@ const values = [
                     </a>
                     <a
                       href={member.social.linkedin}
-                      class="w-10 h-10 bg-cream-100 dark:bg-dark-700 hover:bg-slice-500 hover:text-white rounded-full flex items-center justify-center text-dark-400 transition-all duration-300"
+                      class="w-8 h-8 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center text-white transition-all duration-300 group/social"
+                      aria-label="LinkedIn"
                     >
                       <svg
-                        class="w-5 h-5"
+                        class="w-4 h-4 transition-transform duration-300 group-hover/social:scale-110"
                         fill="currentColor"
                         viewBox="0 0 24 24"
                       >
@@ -214,87 +228,17 @@ const values = [
                     </a>
                     <a
                       href={member.social.github}
-                      class="w-10 h-10 bg-cream-100 dark:bg-dark-700 hover:bg-slice-500 hover:text-white rounded-full flex items-center justify-center text-dark-400 transition-all duration-300"
+                      class="w-8 h-8 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center text-white transition-all duration-300 group/social"
+                      aria-label="GitHub"
                     >
                       <svg
-                        class="w-5 h-5"
+                        class="w-4 h-4 transition-transform duration-300 group-hover/social:scale-110"
                         fill="currentColor"
                         viewBox="0 0 24 24"
                       >
                         <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                       </svg>
                     </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))
-        }
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-        {
-          teamMembers.slice(3).map((member, index) => (
-            <div
-              class="group relative opacity-0 animate-slide-up"
-              style={`animation-delay: ${(index + 3) * 100}ms`}
-            >
-              <div class="absolute -inset-1 bg-gradient-to-r {member.color} rounded-3xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-500" />
-              <div class="relative bg-white dark:bg-dark-800 rounded-3xl overflow-hidden shadow-card group-hover:shadow-card-hover transition-all duration-500">
-                <div class="flex flex-col sm:flex-row">
-                  <div class="relative w-full sm:w-48 h-48 sm:h-auto overflow-hidden flex-shrink-0">
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                  </div>
-                  <div class="p-6 flex-1">
-                    <h3 class="font-display text-xl font-bold text-dark-900 dark:text-cream-100">
-                      {member.name}
-                    </h3>
-                    <p class="text-slice-600 font-medium mb-3">{member.role}</p>
-                    <p class="text-dark-500 dark:text-dark-400 text-sm leading-relaxed mb-4">
-                      {member.bio}
-                    </p>
-                    <div class="flex gap-3">
-                      <a
-                        href={member.social.twitter}
-                        class="w-8 h-8 bg-cream-100 dark:bg-dark-700 hover:bg-slice-500 hover:text-white rounded-full flex items-center justify-center text-dark-400 transition-all duration-300"
-                      >
-                        <svg
-                          class="w-4 h-4"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                        </svg>
-                      </a>
-                      <a
-                        href={member.social.linkedin}
-                        class="w-8 h-8 bg-cream-100 dark:bg-dark-700 hover:bg-slice-500 hover:text-white rounded-full flex items-center justify-center text-dark-400 transition-all duration-300"
-                      >
-                        <svg
-                          class="w-4 h-4"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                        </svg>
-                      </a>
-                      <a
-                        href={member.social.github}
-                        class="w-8 h-8 bg-cream-100 dark:bg-dark-700 hover:bg-slice-500 hover:text-white rounded-full flex items-center justify-center text-dark-400 transition-all duration-300"
-                      >
-                        <svg
-                          class="w-4 h-4"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                        </svg>
-                      </a>
-                    </div>
                   </div>
                 </div>
               </div>

@@ -1,0 +1,1773 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { languages, getLocalizedPath, type Language } from "../../i18n";
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => ({
+    params: { lang },
+  }));
+}
+
+const { lang } = Astro.params as { lang: Language };
+---
+
+<Layout
+  title="Agile & Scrum Presentation - Slice"
+  currentPath={getLocalizedPath("/agile-scrum", lang)}
+  lang={lang}
+>
+  <div
+    id="presentation-container"
+    class="fixed inset-0 bg-gradient-to-br from-cream-50 to-cream-100 dark:from-dark-950 dark:to-dark-900 overflow-hidden"
+  >
+    <!-- Slide Container -->
+    <div id="slides-container" class="h-full w-full relative">
+      <!-- Slide 1: Title -->
+      <section
+        class="slide active flex items-center justify-center min-h-screen p-8"
+      >
+        <div class="text-center max-w-5xl mx-auto">
+          <div
+            class="mb-8 opacity-0 animate-fade-in"
+            style="animation-delay: 200ms"
+          >
+            <h1
+              class="text-6xl md:text-7xl lg:text-8xl font-display font-bold mb-6 text-dark-900 dark:text-cream-100"
+            >
+              Agile & Scrum
+            </h1>
+            <div
+              class="w-32 h-1 bg-gradient-to-r from-slice-500 to-slice-400 mx-auto rounded-full"
+            >
+            </div>
+          </div>
+          <p
+            class="text-2xl md:text-3xl text-dark-600 dark:text-dark-300 opacity-0 animate-slide-up"
+            style="animation-delay: 400ms"
+          >
+            Bản Nội Dung Chi Tiết Đầy Đủ Dùng Cho Presentation
+          </p>
+        </div>
+      </section>
+
+      <!-- Slide 2: Bối cảnh ra đời của Agile -->
+      <section class="slide flex items-center justify-center min-h-screen p-8">
+        <div class="max-w-6xl mx-auto">
+          <h2
+            class="text-5xl md:text-6xl font-display font-bold mb-8 text-dark-900 dark:text-cream-100"
+          >
+            1. Bối cảnh ra đời của Agile
+          </h2>
+          <div
+            class="space-y-6 text-lg md:text-xl text-dark-700 dark:text-dark-200"
+          >
+            <p
+              class="text-2xl font-semibold text-slice-600 dark:text-slice-400 mb-4"
+            >
+              1.1 Vấn đề của mô hình truyền thống (Waterfall)
+            </p>
+            <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card">
+              <p class="font-semibold mb-3">Waterfall hoạt động như sau:</p>
+              <ul class="list-disc list-inside space-y-2 ml-4">
+                <li>Phân tích yêu cầu → Thiết kế → Code → Test → Release</li>
+                <li>Mỗi giai đoạn xong mới chuyển sang bước tiếp theo</li>
+              </ul>
+            </div>
+            <div
+              class="bg-red-50 dark:bg-red-900/20 rounded-2xl p-6 border-2 border-red-200 dark:border-red-800"
+            >
+              <p class="font-semibold mb-3 text-red-700 dark:text-red-400">
+                Vấn đề thực tế:
+              </p>
+              <ul
+                class="list-disc list-inside space-y-2 ml-4 text-red-600 dark:text-red-300"
+              >
+                <li>Yêu cầu thay đổi nhưng không quay lại được</li>
+                <li>Khách hàng chỉ thấy sản phẩm khi đã gần xong</li>
+                <li>Phát hiện lỗi muộn → chi phí sửa rất cao</li>
+                <li>Team dễ stress, blame lẫn nhau</li>
+              </ul>
+            </div>
+            <p
+              class="text-xl font-semibold text-slice-600 dark:text-slice-400 mt-6"
+            >
+              ➡️ Không phù hợp với môi trường <span
+                class="text-dark-900 dark:text-cream-100">thay đổi nhanh</span
+              >
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 3: Agile Manifesto -->
+      <section class="slide flex items-center justify-center min-h-screen p-8">
+        <div class="max-w-6xl mx-auto">
+          <h2
+            class="text-5xl md:text-6xl font-display font-bold mb-8 text-dark-900 dark:text-cream-100"
+          >
+            1.2 Agile Manifesto (2001)
+          </h2>
+          <div class="space-y-6">
+            <p
+              class="text-xl md:text-2xl text-dark-700 dark:text-dark-200 mb-6"
+            >
+              17 chuyên gia phần mềm thống nhất một cách làm mới – <span
+                class="font-bold text-slice-600 dark:text-slice-400">Agile</span
+              >
+            </p>
+            <div
+              class="bg-gradient-to-br from-slice-50 to-cream-100 dark:from-dark-800 dark:to-dark-700 rounded-3xl p-8 shadow-card"
+            >
+              <h3
+                class="text-3xl font-display font-bold mb-6 text-dark-900 dark:text-cream-100"
+              >
+                4 giá trị cốt lõi:
+              </h3>
+              <div class="grid md:grid-cols-2 gap-4">
+                <div
+                  class="bg-white dark:bg-dark-900 rounded-xl p-5 border-l-4 border-slice-500"
+                >
+                  <p class="font-semibold text-lg mb-2">
+                    Con người & tương tác
+                  </p>
+                  <p class="text-dark-600 dark:text-dark-400">
+                    > Quy trình & công cụ
+                  </p>
+                </div>
+                <div
+                  class="bg-white dark:bg-dark-900 rounded-xl p-5 border-l-4 border-slice-500"
+                >
+                  <p class="font-semibold text-lg mb-2">Phần mềm chạy được</p>
+                  <p class="text-dark-600 dark:text-dark-400">
+                    > Tài liệu chi tiết
+                  </p>
+                </div>
+                <div
+                  class="bg-white dark:bg-dark-900 rounded-xl p-5 border-l-4 border-slice-500"
+                >
+                  <p class="font-semibold text-lg mb-2">
+                    Hợp tác với khách hàng
+                  </p>
+                  <p class="text-dark-600 dark:text-dark-400">
+                    > Đàm phán hợp đồng
+                  </p>
+                </div>
+                <div
+                  class="bg-white dark:bg-dark-900 rounded-xl p-5 border-l-4 border-slice-500"
+                >
+                  <p class="font-semibold text-lg mb-2">Phản hồi thay đổi</p>
+                  <p class="text-dark-600 dark:text-dark-400">
+                    > Bám sát kế hoạch
+                  </p>
+                </div>
+              </div>
+            </div>
+            <p
+              class="text-xl font-semibold text-slice-600 dark:text-slice-400 mt-6"
+            >
+              ➡️ Agile tập trung vào <span
+                class="text-dark-900 dark:text-cream-100"
+                >giá trị và thích nghi</span
+              >
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 4: Agile là gì? -->
+      <section class="slide flex items-center justify-center min-h-screen p-8">
+        <div class="max-w-6xl mx-auto">
+          <h2
+            class="text-5xl md:text-6xl font-display font-bold mb-8 text-dark-900 dark:text-cream-100"
+          >
+            2. Agile là gì? (Hiểu đúng)
+          </h2>
+          <div class="grid md:grid-cols-2 gap-8">
+            <div
+              class="bg-red-50 dark:bg-red-900/20 rounded-2xl p-6 border-2 border-red-200 dark:border-red-800"
+            >
+              <h3
+                class="text-2xl font-display font-bold mb-4 text-red-700 dark:text-red-400"
+              >
+                2.1 Agile KHÔNG phải là:
+              </h3>
+              <ul class="space-y-3 text-dark-700 dark:text-dark-200">
+                <li class="flex items-start">
+                  <span class="text-red-500 mr-2">✗</span>
+                  <span>Một quy trình cố định</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-red-500 mr-2">✗</span>
+                  <span>Không kế hoạch</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-red-500 mr-2">✗</span>
+                  <span>Muốn làm gì thì làm</span>
+                </li>
+              </ul>
+            </div>
+            <div
+              class="bg-green-50 dark:bg-green-900/20 rounded-2xl p-6 border-2 border-green-200 dark:border-green-800"
+            >
+              <h3
+                class="text-2xl font-display font-bold mb-4 text-green-700 dark:text-green-400"
+              >
+                2.2 Agile LÀ:
+              </h3>
+              <ul class="space-y-3 text-dark-700 dark:text-dark-200">
+                <li class="flex items-start">
+                  <span class="text-green-500 mr-2">✓</span>
+                  <span>Một <strong>tư duy làm việc</strong></span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-green-500 mr-2">✓</span>
+                  <span>Giao hàng sớm – học nhanh – cải tiến liên tục</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-green-500 mr-2">✓</span>
+                  <span>Chia nhỏ rủi ro</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="mt-8 text-center">
+            <p
+              class="text-2xl font-semibold text-slice-600 dark:text-slice-400"
+            >
+              ➡️ Agile = Mindset | Scrum = Framework
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 5: 12 Nguyên tắc Agile -->
+      <section class="slide flex items-center justify-center min-h-screen p-8">
+        <div class="max-w-6xl mx-auto">
+          <h2
+            class="text-5xl md:text-6xl font-display font-bold mb-8 text-dark-900 dark:text-cream-100"
+          >
+            3. 12 Nguyên tắc Agile
+          </h2>
+          <div
+            class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card max-h-[70vh] overflow-y-auto"
+          >
+            <div class="grid md:grid-cols-2 gap-4 text-sm md:text-base">
+              <div
+                class="flex items-start space-x-3 p-3 rounded-lg bg-cream-50 dark:bg-dark-700"
+              >
+                <span class="text-slice-500 font-bold flex-shrink-0">1.</span>
+                <span
+                  >Ưu tiên cao nhất: <strong>thỏa mãn khách hàng</strong></span
+                >
+              </div>
+              <div
+                class="flex items-start space-x-3 p-3 rounded-lg bg-cream-50 dark:bg-dark-700"
+              >
+                <span class="text-slice-500 font-bold flex-shrink-0">2.</span>
+                <span>Chấp nhận thay đổi – kể cả cuối dự án</span>
+              </div>
+              <div
+                class="flex items-start space-x-3 p-3 rounded-lg bg-cream-50 dark:bg-dark-700"
+              >
+                <span class="text-slice-500 font-bold flex-shrink-0">3.</span>
+                <span>Giao sản phẩm thường xuyên</span>
+              </div>
+              <div
+                class="flex items-start space-x-3 p-3 rounded-lg bg-cream-50 dark:bg-dark-700"
+              >
+                <span class="text-slice-500 font-bold flex-shrink-0">4.</span>
+                <span>Business & Dev làm việc hằng ngày</span>
+              </div>
+              <div
+                class="flex items-start space-x-3 p-3 rounded-lg bg-cream-50 dark:bg-dark-700"
+              >
+                <span class="text-slice-500 font-bold flex-shrink-0">5.</span>
+                <span>Xây dựng dự án quanh người có động lực</span>
+              </div>
+              <div
+                class="flex items-start space-x-3 p-3 rounded-lg bg-cream-50 dark:bg-dark-700"
+              >
+                <span class="text-slice-500 font-bold flex-shrink-0">6.</span>
+                <span>Giao tiếp trực tiếp là hiệu quả nhất</span>
+              </div>
+              <div
+                class="flex items-start space-x-3 p-3 rounded-lg bg-cream-50 dark:bg-dark-700"
+              >
+                <span class="text-slice-500 font-bold flex-shrink-0">7.</span>
+                <span>Phần mềm chạy được = tiến độ</span>
+              </div>
+              <div
+                class="flex items-start space-x-3 p-3 rounded-lg bg-cream-50 dark:bg-dark-700"
+              >
+                <span class="text-slice-500 font-bold flex-shrink-0">8.</span>
+                <span>Nhịp độ bền vững (không burnout)</span>
+              </div>
+              <div
+                class="flex items-start space-x-3 p-3 rounded-lg bg-cream-50 dark:bg-dark-700"
+              >
+                <span class="text-slice-500 font-bold flex-shrink-0">9.</span>
+                <span>Kỹ thuật tốt tạo ra tốc độ lâu dài</span>
+              </div>
+              <div
+                class="flex items-start space-x-3 p-3 rounded-lg bg-cream-50 dark:bg-dark-700"
+              >
+                <span class="text-slice-500 font-bold flex-shrink-0">10.</span>
+                <span>Đơn giản hóa tối đa</span>
+              </div>
+              <div
+                class="flex items-start space-x-3 p-3 rounded-lg bg-cream-50 dark:bg-dark-700"
+              >
+                <span class="text-slice-500 font-bold flex-shrink-0">11.</span>
+                <span>Team tự tổ chức</span>
+              </div>
+              <div
+                class="flex items-start space-x-3 p-3 rounded-lg bg-cream-50 dark:bg-dark-700"
+              >
+                <span class="text-slice-500 font-bold flex-shrink-0">12.</span>
+                <span>Luôn phản tư & cải tiến</span>
+              </div>
+            </div>
+          </div>
+          <p
+            class="text-xl font-semibold text-slice-600 dark:text-slice-400 mt-6 text-center"
+          >
+            ➡️ Agile tập trung <strong>dài hạn</strong>, không phải chạy nhanh
+            ngắn hạn
+          </p>
+        </div>
+      </section>
+
+      <!-- Slide 6: Scrum là gì? -->
+      <section class="slide flex items-center justify-center min-h-screen p-8">
+        <div class="max-w-6xl mx-auto">
+          <h2
+            class="text-5xl md:text-6xl font-display font-bold mb-8 text-dark-900 dark:text-cream-100"
+          >
+            4. Scrum là gì?
+          </h2>
+          <div class="space-y-8">
+            <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card">
+              <h3
+                class="text-3xl font-display font-bold mb-4 text-dark-900 dark:text-cream-100"
+              >
+                4.1 Định nghĩa
+              </h3>
+              <p class="text-xl text-dark-700 dark:text-dark-200 mb-4">
+                Scrum là một <strong class="text-slice-600 dark:text-slice-400"
+                  >framework nhẹ</strong
+                >, giúp team giải quyết các bài toán phức tạp thông qua:
+              </p>
+              <ul class="list-disc list-inside space-y-2 text-lg ml-4">
+                <li>Chu kỳ ngắn</li>
+                <li>Feedback liên tục</li>
+                <li>Tính minh bạch cao</li>
+              </ul>
+            </div>
+            <div
+              class="bg-gradient-to-br from-slice-50 to-cream-100 dark:from-dark-800 dark:to-dark-700 rounded-2xl p-6 shadow-card"
+            >
+              <h3
+                class="text-3xl font-display font-bold mb-4 text-dark-900 dark:text-cream-100"
+              >
+                4.2 3 trụ cột của Scrum
+              </h3>
+              <div class="grid md:grid-cols-3 gap-4">
+                <div
+                  class="bg-white dark:bg-dark-900 rounded-xl p-5 text-center border-2 border-slice-300 dark:border-slice-700"
+                >
+                  <div class="text-4xl mb-3">🔍</div>
+                  <h4 class="font-bold text-lg mb-2">Transparency</h4>
+                  <p class="text-sm text-dark-600 dark:text-dark-400">
+                    Mọi thứ rõ ràng
+                  </p>
+                </div>
+                <div
+                  class="bg-white dark:bg-dark-900 rounded-xl p-5 text-center border-2 border-slice-300 dark:border-slice-700"
+                >
+                  <div class="text-4xl mb-3">🔎</div>
+                  <h4 class="font-bold text-lg mb-2">Inspection</h4>
+                  <p class="text-sm text-dark-600 dark:text-dark-400">
+                    Kiểm tra thường xuyên
+                  </p>
+                </div>
+                <div
+                  class="bg-white dark:bg-dark-900 rounded-xl p-5 text-center border-2 border-slice-300 dark:border-slice-700"
+                >
+                  <div class="text-4xl mb-3">⚡</div>
+                  <h4 class="font-bold text-lg mb-2">Adaptation</h4>
+                  <p class="text-sm text-dark-600 dark:text-dark-400">
+                    Điều chỉnh nhanh
+                  </p>
+                </div>
+              </div>
+              <p
+                class="text-center mt-6 text-lg font-semibold text-red-600 dark:text-red-400"
+              >
+                Nếu thiếu 1 trụ → Scrum thất bại
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 7: Scrum Team -->
+      <section class="slide flex items-center justify-center min-h-screen p-8">
+        <div class="max-w-6xl mx-auto">
+          <h2
+            class="text-5xl md:text-6xl font-display font-bold mb-8 text-dark-900 dark:text-cream-100"
+          >
+            5. Scrum Team – Cấu trúc & Vai trò
+          </h2>
+          <div
+            class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card mb-6"
+          >
+            <h3
+              class="text-3xl font-display font-bold mb-4 text-dark-900 dark:text-cream-100"
+            >
+              5.1 Scrum Team
+            </h3>
+            <div class="flex flex-wrap justify-center gap-6 mb-4">
+              <div
+                class="bg-slice-100 dark:bg-slice-900/30 rounded-xl p-4 px-6"
+              >
+                <span class="text-lg font-semibold">1 Product Owner</span>
+              </div>
+              <div
+                class="bg-slice-100 dark:bg-slice-900/30 rounded-xl p-4 px-6"
+              >
+                <span class="text-lg font-semibold">1 Scrum Master</span>
+              </div>
+              <div
+                class="bg-slice-100 dark:bg-slice-900/30 rounded-xl p-4 px-6"
+              >
+                <span class="text-lg font-semibold">Development Team</span>
+              </div>
+            </div>
+            <p
+              class="text-center text-xl font-semibold text-slice-600 dark:text-slice-400"
+            >
+              ➡️ Không có cấp bậc – tất cả cùng chịu trách nhiệm
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 8: Product Owner -->
+      <section class="slide flex items-center justify-center min-h-screen p-8">
+        <div class="max-w-6xl mx-auto">
+          <h2
+            class="text-5xl md:text-6xl font-display font-bold mb-8 text-dark-900 dark:text-cream-100"
+          >
+            5.2 Product Owner (PO)
+          </h2>
+          <div class="space-y-6">
+            <div
+              class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-2xl p-6 border-2 border-blue-200 dark:border-blue-800"
+            >
+              <p
+                class="text-2xl font-bold mb-4 text-blue-700 dark:text-blue-400"
+              >
+                Mục tiêu: Tối đa hóa giá trị sản phẩm
+              </p>
+            </div>
+            <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card">
+              <h3
+                class="text-2xl font-display font-bold mb-4 text-dark-900 dark:text-cream-100"
+              >
+                Trách nhiệm:
+              </h3>
+              <ul class="list-disc list-inside space-y-2 text-lg ml-4">
+                <li>Xây dựng Product Vision</li>
+                <li>Quản lý & ưu tiên Product Backlog</li>
+                <li>Kết nối stakeholder</li>
+                <li>Quyết định scope</li>
+              </ul>
+            </div>
+            <div
+              class="bg-red-50 dark:bg-red-900/20 rounded-2xl p-6 border-2 border-red-200 dark:border-red-800"
+            >
+              <h3
+                class="text-2xl font-display font-bold mb-4 text-red-700 dark:text-red-400"
+              >
+                PO KHÔNG:
+              </h3>
+              <ul class="list-disc list-inside space-y-2 text-lg ml-4">
+                <li>Micromanage team</li>
+                <li>Giao task kỹ thuật</li>
+              </ul>
+            </div>
+            <p
+              class="text-xl font-semibold text-slice-600 dark:text-slice-400 text-center"
+            >
+              ➡️ PO chịu trách nhiệm <strong>WHAT & WHY</strong>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 9: Scrum Master -->
+      <section class="slide flex items-center justify-center min-h-screen p-8">
+        <div class="max-w-6xl mx-auto">
+          <h2
+            class="text-5xl md:text-6xl font-display font-bold mb-8 text-dark-900 dark:text-cream-100"
+          >
+            5.3 Scrum Master
+          </h2>
+          <div class="space-y-6">
+            <div
+              class="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-2xl p-6 border-2 border-purple-200 dark:border-purple-800"
+            >
+              <p
+                class="text-2xl font-bold mb-4 text-purple-700 dark:text-purple-400"
+              >
+                Mục tiêu: Scrum vận hành đúng và hiệu quả
+              </p>
+            </div>
+            <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card">
+              <h3
+                class="text-2xl font-display font-bold mb-4 text-dark-900 dark:text-cream-100"
+              >
+                Vai trò:
+              </h3>
+              <ul class="list-disc list-inside space-y-2 text-lg ml-4">
+                <li>Coach Agile</li>
+                <li>Facilitate sự kiện</li>
+                <li>Gỡ blocker</li>
+                <li>Bảo vệ team</li>
+              </ul>
+            </div>
+            <div
+              class="bg-yellow-50 dark:bg-yellow-900/20 rounded-2xl p-6 border-2 border-yellow-200 dark:border-yellow-800"
+            >
+              <p
+                class="text-xl font-semibold text-yellow-700 dark:text-yellow-400 text-center"
+              >
+                ⚠️ Scrum Master không phải PM
+              </p>
+            </div>
+            <p
+              class="text-xl font-semibold text-slice-600 dark:text-slice-400 text-center"
+            >
+              ➡️ Scrum Master chịu trách nhiệm <strong>HOW</strong>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 10: Development Team -->
+      <section class="slide flex items-center justify-center min-h-screen p-8">
+        <div class="max-w-6xl mx-auto">
+          <h2
+            class="text-5xl md:text-6xl font-display font-bold mb-8 text-dark-900 dark:text-cream-100"
+          >
+            5.4 Development Team
+          </h2>
+          <div class="space-y-6">
+            <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card">
+              <h3
+                class="text-2xl font-display font-bold mb-4 text-dark-900 dark:text-cream-100"
+              >
+                Đặc điểm:
+              </h3>
+              <div class="grid md:grid-cols-3 gap-4 mb-6">
+                <div
+                  class="bg-green-50 dark:bg-green-900/20 rounded-xl p-4 text-center border-2 border-green-200 dark:border-green-800"
+                >
+                  <p class="font-bold text-lg">Cross-functional</p>
+                </div>
+                <div
+                  class="bg-green-50 dark:bg-green-900/20 rounded-xl p-4 text-center border-2 border-green-200 dark:border-green-800"
+                >
+                  <p class="font-bold text-lg">Self-organizing</p>
+                </div>
+                <div
+                  class="bg-green-50 dark:bg-green-900/20 rounded-xl p-4 text-center border-2 border-green-200 dark:border-green-800"
+                >
+                  <p class="font-bold text-lg">3–9 người</p>
+                </div>
+              </div>
+              <h3
+                class="text-2xl font-display font-bold mb-4 text-dark-900 dark:text-cream-100"
+              >
+                Trách nhiệm:
+              </h3>
+              <div class="grid md:grid-cols-5 gap-3">
+                <div
+                  class="bg-cream-50 dark:bg-dark-700 rounded-lg p-3 text-center"
+                >
+                  <p class="font-semibold">Estimate</p>
+                </div>
+                <div
+                  class="bg-cream-50 dark:bg-dark-700 rounded-lg p-3 text-center"
+                >
+                  <p class="font-semibold">Design</p>
+                </div>
+                <div
+                  class="bg-cream-50 dark:bg-dark-700 rounded-lg p-3 text-center"
+                >
+                  <p class="font-semibold">Develop</p>
+                </div>
+                <div
+                  class="bg-cream-50 dark:bg-dark-700 rounded-lg p-3 text-center"
+                >
+                  <p class="font-semibold">Test</p>
+                </div>
+                <div
+                  class="bg-cream-50 dark:bg-dark-700 rounded-lg p-3 text-center"
+                >
+                  <p class="font-semibold">Deliver</p>
+                </div>
+              </div>
+            </div>
+            <p
+              class="text-xl font-semibold text-slice-600 dark:text-slice-400 text-center"
+            >
+              ➡️ Team chịu trách nhiệm <strong>DONE</strong>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 11: Artifacts -->
+      <section class="slide flex items-center justify-center min-h-screen p-8">
+        <div class="max-w-6xl mx-auto">
+          <h2
+            class="text-5xl md:text-6xl font-display font-bold mb-8 text-dark-900 dark:text-cream-100"
+          >
+            6. Artifact trong Scrum
+          </h2>
+          <div class="space-y-6">
+            <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card">
+              <h3
+                class="text-2xl font-display font-bold mb-4 text-dark-900 dark:text-cream-100"
+              >
+                6.1 Product Backlog
+              </h3>
+              <ul class="list-disc list-inside space-y-2 text-lg ml-4 mb-4">
+                <li>Danh sách yêu cầu sống</li>
+                <li>Sắp xếp theo giá trị</li>
+                <li>Thường ở dạng User Story</li>
+              </ul>
+              <div
+                class="bg-slice-50 dark:bg-slice-900/30 rounded-xl p-4 border-l-4 border-slice-500"
+              >
+                <p class="text-sm text-dark-600 dark:text-dark-400 mb-2">
+                  Ví dụ User Story:
+                </p>
+                <p class="text-lg italic text-dark-700 dark:text-dark-200">
+                  "Là một khách hàng, tôi muốn thanh toán nhanh để không phải
+                  chờ đợi"
+                </p>
+              </div>
+            </div>
+            <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card">
+              <h3
+                class="text-2xl font-display font-bold mb-4 text-dark-900 dark:text-cream-100"
+              >
+                6.2 Sprint Backlog
+              </h3>
+              <ul class="list-disc list-inside space-y-2 text-lg ml-4">
+                <li>Các item được chọn cho Sprint</li>
+                <li>Do Development Team sở hữu</li>
+              </ul>
+              <p
+                class="mt-4 text-lg font-semibold text-slice-600 dark:text-slice-400"
+              >
+                ➡️ Không ai ép team nhận thêm việc giữa Sprint
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 12: Increment & DoD -->
+      <section class="slide flex items-center justify-center min-h-screen p-8">
+        <div class="max-w-6xl mx-auto">
+          <h2
+            class="text-5xl md:text-6xl font-display font-bold mb-8 text-dark-900 dark:text-cream-100"
+          >
+            6.3 Increment & Definition of Done
+          </h2>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card">
+              <h3
+                class="text-2xl font-display font-bold mb-4 text-green-600 dark:text-green-400"
+              >
+                Increment:
+              </h3>
+              <ul class="list-disc list-inside space-y-2 text-lg ml-4">
+                <li>Có thể release</li>
+                <li>Chạy được</li>
+              </ul>
+            </div>
+            <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card">
+              <h3
+                class="text-2xl font-display font-bold mb-4 text-blue-600 dark:text-blue-400"
+              >
+                Definition of Done:
+              </h3>
+              <ul class="list-disc list-inside space-y-2 text-lg ml-4">
+                <li>Code</li>
+                <li>Test</li>
+                <li>Review</li>
+                <li>Document (nếu có)</li>
+              </ul>
+            </div>
+          </div>
+          <p
+            class="text-xl font-semibold text-red-600 dark:text-red-400 text-center mt-6"
+          >
+            ➡️ Không DONE = chưa có giá trị
+          </p>
+        </div>
+      </section>
+
+      <!-- Slide 13: Sprint -->
+      <section class="slide flex items-center justify-center min-h-screen p-8">
+        <div class="max-w-6xl mx-auto">
+          <h2
+            class="text-5xl md:text-6xl font-display font-bold mb-8 text-dark-900 dark:text-cream-100"
+          >
+            7. Scrum Events
+          </h2>
+          <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card">
+            <h3
+              class="text-3xl font-display font-bold mb-4 text-dark-900 dark:text-cream-100"
+            >
+              7.1 Sprint
+            </h3>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="bg-slice-50 dark:bg-slice-900/30 rounded-xl p-4">
+                <p class="font-semibold text-lg mb-2">Timebox:</p>
+                <p class="text-xl text-slice-600 dark:text-slice-400">
+                  1–4 tuần
+                </p>
+              </div>
+              <div
+                class="bg-red-50 dark:bg-red-900/20 rounded-xl p-4 border-2 border-red-200 dark:border-red-800"
+              >
+                <p
+                  class="font-semibold text-lg mb-2 text-red-700 dark:text-red-400"
+                >
+                  Quy tắc:
+                </p>
+                <p class="text-lg text-red-600 dark:text-red-300">
+                  Không thay đổi mục tiêu giữa Sprint
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 14: Sprint Planning -->
+      <section class="slide flex items-center justify-center min-h-screen p-8">
+        <div class="max-w-6xl mx-auto">
+          <h2
+            class="text-5xl md:text-6xl font-display font-bold mb-8 text-dark-900 dark:text-cream-100"
+          >
+            7.2 Sprint Planning
+          </h2>
+          <div class="space-y-6">
+            <div class="grid md:grid-cols-2 gap-4">
+              <div
+                class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4 border-2 border-blue-200 dark:border-blue-800"
+              >
+                <p class="font-semibold text-lg mb-2">Input:</p>
+                <p class="text-xl">Product Backlog</p>
+              </div>
+              <div
+                class="bg-green-50 dark:bg-green-900/20 rounded-xl p-4 border-2 border-green-200 dark:border-green-800"
+              >
+                <p class="font-semibold text-lg mb-2">Output:</p>
+                <ul class="list-disc list-inside ml-2">
+                  <li>Sprint Goal</li>
+                  <li>Sprint Backlog</li>
+                </ul>
+              </div>
+            </div>
+            <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card">
+              <h3
+                class="text-2xl font-display font-bold mb-4 text-dark-900 dark:text-cream-100"
+              >
+                3 câu hỏi:
+              </h3>
+              <ol class="list-decimal list-inside space-y-3 text-lg ml-4">
+                <li>Tại sao Sprint này quan trọng?</li>
+                <li>Làm những gì?</li>
+                <li>Làm thế nào?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 15: Daily Scrum -->
+      <section class="slide flex items-center justify-center min-h-screen p-8">
+        <div class="max-w-6xl mx-auto">
+          <h2
+            class="text-5xl md:text-6xl font-display font-bold mb-8 text-dark-900 dark:text-cream-100"
+          >
+            7.3 Daily Scrum
+          </h2>
+          <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <div
+                  class="bg-yellow-50 dark:bg-yellow-900/20 rounded-xl p-4 mb-4 border-2 border-yellow-200 dark:border-yellow-800"
+                >
+                  <p
+                    class="text-3xl font-bold text-yellow-700 dark:text-yellow-400"
+                  >
+                    15 phút
+                  </p>
+                </div>
+                <div
+                  class="bg-red-50 dark:bg-red-900/20 rounded-xl p-4 border-2 border-red-200 dark:border-red-800"
+                >
+                  <p class="font-semibold text-red-700 dark:text-red-400">
+                    Chỉ dành cho Dev Team
+                  </p>
+                </div>
+              </div>
+              <div class="bg-slice-50 dark:bg-slice-900/30 rounded-xl p-4">
+                <h3 class="text-xl font-bold mb-3">Mục tiêu:</h3>
+                <p class="text-lg">Đồng bộ & phát hiện vấn đề sớm</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 16: Sprint Review -->
+      <section class="slide flex items-center justify-center min-h-screen p-8">
+        <div class="max-w-6xl mx-auto">
+          <h2
+            class="text-5xl md:text-6xl font-display font-bold mb-8 text-dark-900 dark:text-cream-100"
+          >
+            7.4 Sprint Review
+          </h2>
+          <div class="space-y-6">
+            <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card">
+              <ul class="list-disc list-inside space-y-3 text-lg ml-4">
+                <li>Demo sản phẩm</li>
+                <li>Nhận feedback thật</li>
+                <li>Điều chỉnh backlog</li>
+              </ul>
+            </div>
+            <div
+              class="bg-yellow-50 dark:bg-yellow-900/20 rounded-2xl p-6 border-2 border-yellow-200 dark:border-yellow-800"
+            >
+              <p
+                class="text-xl font-semibold text-yellow-700 dark:text-yellow-400 text-center"
+              >
+                ⚠️ Đây KHÔNG phải buổi report
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 17: Sprint Retrospective -->
+      <section class="slide flex items-center justify-center min-h-screen p-8">
+        <div class="max-w-6xl mx-auto">
+          <h2
+            class="text-5xl md:text-6xl font-display font-bold mb-8 text-dark-900 dark:text-cream-100"
+          >
+            7.5 Sprint Retrospective
+          </h2>
+          <div class="space-y-6">
+            <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card">
+              <ul class="list-disc list-inside space-y-3 text-lg ml-4 mb-4">
+                <li>Nhìn lại cách làm việc</li>
+                <li>Cải tiến cụ thể</li>
+              </ul>
+            </div>
+            <div
+              class="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-2xl p-6 border-2 border-purple-200 dark:border-purple-800"
+            >
+              <h3
+                class="text-2xl font-display font-bold mb-4 text-dark-900 dark:text-cream-100"
+              >
+                3 câu hỏi:
+              </h3>
+              <div class="space-y-3">
+                <div class="bg-white dark:bg-dark-900 rounded-xl p-4">
+                  <p class="font-semibold">What went well?</p>
+                </div>
+                <div class="bg-white dark:bg-dark-900 rounded-xl p-4">
+                  <p class="font-semibold">What didn't?</p>
+                </div>
+                <div class="bg-white dark:bg-dark-900 rounded-xl p-4">
+                  <p class="font-semibold">What to improve?</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 18: Luồng Scrum tổng thể -->
+      <section class="slide flex items-center justify-center min-h-screen p-8">
+        <div class="max-w-6xl mx-auto">
+          <h2
+            class="text-5xl md:text-6xl font-display font-bold mb-8 text-dark-900 dark:text-cream-100"
+          >
+            8. Luồng Scrum tổng thể
+          </h2>
+          <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card">
+            <div class="grid md:grid-cols-4 gap-4">
+              <div
+                class="bg-slice-50 dark:bg-slice-900/30 rounded-xl p-4 text-center"
+              >
+                <p class="font-semibold">1. Product Vision</p>
+              </div>
+              <div
+                class="bg-slice-50 dark:bg-slice-900/30 rounded-xl p-4 text-center"
+              >
+                <p class="font-semibold">2. Product Backlog</p>
+              </div>
+              <div
+                class="bg-slice-50 dark:bg-slice-900/30 rounded-xl p-4 text-center"
+              >
+                <p class="font-semibold">3. Sprint Planning</p>
+              </div>
+              <div
+                class="bg-slice-50 dark:bg-slice-900/30 rounded-xl p-4 text-center"
+              >
+                <p class="font-semibold">4. Sprint</p>
+              </div>
+              <div
+                class="bg-slice-50 dark:bg-slice-900/30 rounded-xl p-4 text-center"
+              >
+                <p class="font-semibold">5. Daily Scrum</p>
+              </div>
+              <div
+                class="bg-slice-50 dark:bg-slice-900/30 rounded-xl p-4 text-center"
+              >
+                <p class="font-semibold">6. Review</p>
+              </div>
+              <div
+                class="bg-slice-50 dark:bg-slice-900/30 rounded-xl p-4 text-center"
+              >
+                <p class="font-semibold">7. Retrospective</p>
+              </div>
+              <div
+                class="bg-slice-50 dark:bg-slice-900/30 rounded-xl p-4 text-center"
+              >
+                <p class="font-semibold">8. Sprint tiếp theo</p>
+              </div>
+            </div>
+            <p
+              class="text-xl font-semibold text-slice-600 dark:text-slice-400 text-center mt-6"
+            >
+              ➡️ Inspect & Adapt liên tục
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 19: Ví dụ thực tế - Title -->
+      <section class="slide flex items-center justify-center min-h-screen p-8">
+        <div class="text-center max-w-5xl mx-auto">
+          <h2
+            class="text-5xl md:text-6xl font-display font-bold mb-6 text-dark-900 dark:text-cream-100"
+          >
+            8A. Ví dụ thực tế
+          </h2>
+          <div class="bg-white dark:bg-dark-800 rounded-2xl p-8 shadow-card">
+            <h3
+              class="text-3xl font-display font-bold mb-4 text-slice-600 dark:text-slice-400"
+            >
+              Mobile App Đặt Món Nhà Hàng
+            </h3>
+            <p class="text-xl text-dark-700 dark:text-dark-200">
+              Ví dụ xuyên suốt để minh họa cách Scrum vận hành trong dự án app
+              mobile thực tế
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 20: Product Vision - Ví dụ -->
+      <section class="slide flex items-center justify-center min-h-screen p-8">
+        <div class="max-w-6xl mx-auto">
+          <h2
+            class="text-5xl md:text-6xl font-display font-bold mb-8 text-dark-900 dark:text-cream-100"
+          >
+            8A.1 Product Vision
+          </h2>
+          <div class="space-y-6">
+            <div
+              class="bg-red-50 dark:bg-red-900/20 rounded-2xl p-6 border-2 border-red-200 dark:border-red-800"
+            >
+              <h3
+                class="text-2xl font-display font-bold mb-4 text-red-700 dark:text-red-400"
+              >
+                Bài toán business:
+              </h3>
+              <ul class="list-disc list-inside space-y-2 text-lg ml-4">
+                <li>Giờ cao điểm khách chờ lâu</li>
+                <li>Nhân viên order sai</li>
+              </ul>
+            </div>
+            <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card">
+              <h3
+                class="text-2xl font-display font-bold mb-4 text-dark-900 dark:text-cream-100"
+              >
+                Vision:
+              </h3>
+              <p class="text-xl italic text-slice-600 dark:text-slice-400 mb-4">
+                "Xây dựng app giúp khách <strong
+                  >tự đặt món & thanh toán nhanh trong 3 phút</strong
+                >"
+              </p>
+            </div>
+            <div
+              class="bg-green-50 dark:bg-green-900/20 rounded-2xl p-6 border-2 border-green-200 dark:border-green-800"
+            >
+              <h3
+                class="text-2xl font-display font-bold mb-4 text-green-700 dark:text-green-400"
+              >
+                Mục tiêu đo lường:
+              </h3>
+              <ul class="list-disc list-inside space-y-2 text-lg ml-4">
+                <li>Giảm thời gian order từ 10p → 3p</li>
+                <li>Giảm lỗi order 80%</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 21: Product Backlog - Ví dụ -->
+      <section class="slide flex items-center justify-center min-h-screen p-8">
+        <div class="max-w-6xl mx-auto">
+          <h2
+            class="text-5xl md:text-6xl font-display font-bold mb-8 text-dark-900 dark:text-cream-100"
+          >
+            8A.2 Product Backlog – Ví dụ thực tế
+          </h2>
+          <div class="space-y-6">
+            <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card">
+              <h3
+                class="text-2xl font-display font-bold mb-4 text-dark-900 dark:text-cream-100"
+              >
+                Epic: Đặt món & thanh toán
+              </h3>
+              <h4
+                class="text-xl font-semibold mb-4 text-slice-600 dark:text-slice-400"
+              >
+                User Stories:
+              </h4>
+              <div class="space-y-3">
+                <div
+                  class="bg-cream-50 dark:bg-dark-700 rounded-xl p-4 border-l-4 border-slice-500"
+                >
+                  <p class="text-sm text-dark-600 dark:text-dark-400 mb-1">
+                    Story 1:
+                  </p>
+                  <p class="text-lg">Là khách, tôi muốn xem menu để chọn món</p>
+                </div>
+                <div
+                  class="bg-cream-50 dark:bg-dark-700 rounded-xl p-4 border-l-4 border-slice-500"
+                >
+                  <p class="text-sm text-dark-600 dark:text-dark-400 mb-1">
+                    Story 2:
+                  </p>
+                  <p class="text-lg">
+                    Là khách, tôi muốn thêm món vào giỏ hàng
+                  </p>
+                </div>
+                <div
+                  class="bg-cream-50 dark:bg-dark-700 rounded-xl p-4 border-l-4 border-slice-500"
+                >
+                  <p class="text-sm text-dark-600 dark:text-dark-400 mb-1">
+                    Story 3:
+                  </p>
+                  <p class="text-lg">Là khách, tôi muốn chỉnh số lượng món</p>
+                </div>
+                <div
+                  class="bg-cream-50 dark:bg-dark-700 rounded-xl p-4 border-l-4 border-slice-500"
+                >
+                  <p class="text-sm text-dark-600 dark:text-dark-400 mb-1">
+                    Story 4:
+                  </p>
+                  <p class="text-lg">Là khách, tôi muốn thanh toán QR</p>
+                </div>
+                <div
+                  class="bg-cream-50 dark:bg-dark-700 rounded-xl p-4 border-l-4 border-slice-500"
+                >
+                  <p class="text-sm text-dark-600 dark:text-dark-400 mb-1">
+                    Story 5:
+                  </p>
+                  <p class="text-lg">
+                    Là nhân viên, tôi muốn thấy order realtime
+                  </p>
+                </div>
+              </div>
+            </div>
+            <p class="text-lg font-semibold text-slice-600 dark:text-slice-400">
+              ➡️ PO sắp xếp backlog theo <strong>giá trị business</strong>,
+              không theo kỹ thuật
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 22: Backlog Refinement -->
+      <section class="slide flex items-center justify-center min-h-screen p-8">
+        <div class="max-w-6xl mx-auto">
+          <h2
+            class="text-5xl md:text-6xl font-display font-bold mb-8 text-dark-900 dark:text-cream-100"
+          >
+            8A.3 Backlog Refinement
+          </h2>
+          <div class="space-y-6">
+            <div
+              class="bg-yellow-50 dark:bg-yellow-900/20 rounded-2xl p-6 border-2 border-yellow-200 dark:border-yellow-800"
+            >
+              <p
+                class="text-xl font-semibold text-yellow-700 dark:text-yellow-400 mb-4"
+              >
+                ⚠️ Thường bị bỏ qua
+              </p>
+            </div>
+            <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card">
+              <h3
+                class="text-2xl font-display font-bold mb-4 text-dark-900 dark:text-cream-100"
+              >
+                Hoạt động:
+              </h3>
+              <ul class="list-disc list-inside space-y-2 text-lg ml-4 mb-6">
+                <li>PO + Dev làm rõ story</li>
+                <li>Chia nhỏ</li>
+                <li>Ước lượng (Story Point)</li>
+              </ul>
+              <div class="bg-slice-50 dark:bg-slice-900/30 rounded-xl p-4">
+                <p class="font-semibold mb-2">Ví dụ: "Thanh toán QR" → tách:</p>
+                <ul class="list-disc list-inside space-y-1 ml-4">
+                  <li>Hiển thị QR</li>
+                  <li>Gọi API payment</li>
+                  <li>Xử lý thất bại</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 23: Sprint Planning - Ví dụ -->
+      <section class="slide flex items-center justify-center min-h-screen p-8">
+        <div class="max-w-6xl mx-auto">
+          <h2
+            class="text-5xl md:text-6xl font-display font-bold mb-8 text-dark-900 dark:text-cream-100"
+          >
+            8A.4 Sprint Planning – Ví dụ
+          </h2>
+          <div class="space-y-6">
+            <div class="grid md:grid-cols-2 gap-4">
+              <div
+                class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4 border-2 border-blue-200 dark:border-blue-800"
+              >
+                <p class="font-semibold text-lg mb-2">Sprint length:</p>
+                <p class="text-xl">2 tuần</p>
+              </div>
+            </div>
+            <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card">
+              <h3
+                class="text-2xl font-display font-bold mb-4 text-dark-900 dark:text-cream-100"
+              >
+                Sprint Goal:
+              </h3>
+              <p class="text-xl italic text-slice-600 dark:text-slice-400 mb-6">
+                "Khách có thể xem menu và tạo order cơ bản"
+              </p>
+              <h3
+                class="text-2xl font-display font-bold mb-4 text-dark-900 dark:text-cream-100"
+              >
+                Sprint Backlog:
+              </h3>
+              <ul class="list-disc list-inside space-y-2 text-lg ml-4">
+                <li>Xem danh sách món</li>
+                <li>Thêm món vào giỏ</li>
+                <li>Tính tổng tiền</li>
+              </ul>
+            </div>
+            <p class="text-lg font-semibold text-slice-600 dark:text-slice-400">
+              ➡️ Team tự commit dựa trên velocity
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 24: Daily Scrum - Ví dụ -->
+      <section class="slide flex items-center justify-center min-h-screen p-8">
+        <div class="max-w-6xl mx-auto">
+          <h2
+            class="text-5xl md:text-6xl font-display font-bold mb-8 text-dark-900 dark:text-cream-100"
+          >
+            8A.5 Trong Sprint – Daily Scrum
+          </h2>
+          <div class="space-y-6">
+            <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card">
+              <div class="bg-cream-50 dark:bg-dark-700 rounded-xl p-4 mb-4">
+                <p class="font-semibold text-lg mb-2">Dev 1:</p>
+                <ul class="list-disc list-inside space-y-1 ml-4">
+                  <li>Hôm qua: làm UI menu</li>
+                  <li>Hôm nay: gắn API menu</li>
+                  <li>Blocker: API chậm</li>
+                </ul>
+              </div>
+              <div class="bg-slice-50 dark:bg-slice-900/30 rounded-xl p-4">
+                <p class="font-semibold text-lg mb-2">Scrum Master:</p>
+                <p class="text-lg">Làm việc với backend team để gỡ blocker</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 25: Increment - Ví dụ -->
+      <section class="slide flex items-center justify-center min-h-screen p-8">
+        <div class="max-w-6xl mx-auto">
+          <h2
+            class="text-5xl md:text-6xl font-display font-bold mb-8 text-dark-900 dark:text-cream-100"
+          >
+            8A.6 Increment – Kết quả Sprint
+          </h2>
+          <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card">
+            <p class="text-xl mb-6">Sau 2 tuần:</p>
+            <div class="space-y-3 mb-6">
+              <div
+                class="bg-green-50 dark:bg-green-900/20 rounded-xl p-4 border-l-4 border-green-500"
+              >
+                <p class="text-lg">✓ App chạy được</p>
+              </div>
+              <div
+                class="bg-green-50 dark:bg-green-900/20 rounded-xl p-4 border-l-4 border-green-500"
+              >
+                <p class="text-lg">✓ Khách xem menu</p>
+              </div>
+              <div
+                class="bg-green-50 dark:bg-green-900/20 rounded-xl p-4 border-l-4 border-green-500"
+              >
+                <p class="text-lg">✓ Thêm món vào giỏ</p>
+              </div>
+            </div>
+            <p class="text-xl font-semibold text-slice-600 dark:text-slice-400">
+              ➡️ Chưa có payment vẫn OK vì <strong>Increment có giá trị</strong>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 26: Sprint Review - Ví dụ -->
+      <section class="slide flex items-center justify-center min-h-screen p-8">
+        <div class="max-w-6xl mx-auto">
+          <h2
+            class="text-5xl md:text-6xl font-display font-bold mb-8 text-dark-900 dark:text-cream-100"
+          >
+            8A.7 Sprint Review – Ví dụ
+          </h2>
+          <div class="space-y-6">
+            <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card">
+              <h3
+                class="text-2xl font-display font-bold mb-4 text-dark-900 dark:text-cream-100"
+              >
+                Demo cho stakeholder:
+              </h3>
+              <ul class="list-disc list-inside space-y-2 text-lg ml-4 mb-6">
+                <li>Chủ nhà hàng</li>
+                <li>Operation</li>
+              </ul>
+              <h3
+                class="text-2xl font-display font-bold mb-4 text-dark-900 dark:text-cream-100"
+              >
+                Feedback:
+              </h3>
+              <div
+                class="bg-yellow-50 dark:bg-yellow-900/20 rounded-xl p-4 border-l-4 border-yellow-500"
+              >
+                <ul class="list-disc list-inside space-y-1 ml-4">
+                  <li>"Cần filter theo loại món"</li>
+                  <li>"Chữ giá hơi nhỏ"</li>
+                </ul>
+              </div>
+            </div>
+            <p class="text-lg font-semibold text-slice-600 dark:text-slice-400">
+              ➡️ PO cập nhật lại Product Backlog
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 27: Sprint Retrospective - Ví dụ -->
+      <section class="slide flex items-center justify-center min-h-screen p-8">
+        <div class="max-w-6xl mx-auto">
+          <h2
+            class="text-5xl md:text-6xl font-display font-bold mb-8 text-dark-900 dark:text-cream-100"
+          >
+            8A.8 Sprint Retrospective – Ví dụ
+          </h2>
+          <div class="space-y-6">
+            <div
+              class="bg-green-50 dark:bg-green-900/20 rounded-xl p-4 border-2 border-green-200 dark:border-green-800"
+            >
+              <h3
+                class="text-xl font-bold mb-3 text-green-700 dark:text-green-400"
+              >
+                What went well:
+              </h3>
+              <p class="text-lg">UI làm nhanh</p>
+            </div>
+            <div
+              class="bg-red-50 dark:bg-red-900/20 rounded-xl p-4 border-2 border-red-200 dark:border-red-800"
+            >
+              <h3 class="text-xl font-bold mb-3 text-red-700 dark:text-red-400">
+                What didn't:
+              </h3>
+              <p class="text-lg">API chậm, thiếu mock</p>
+            </div>
+            <div
+              class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4 border-2 border-blue-200 dark:border-blue-800"
+            >
+              <h3
+                class="text-xl font-bold mb-3 text-blue-700 dark:text-blue-400"
+              >
+                Action:
+              </h3>
+              <p class="text-lg">Sprint sau dùng mock API sớm</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 28: Sprint tiếp theo -->
+      <section class="slide flex items-center justify-center min-h-screen p-8">
+        <div class="max-w-6xl mx-auto">
+          <h2
+            class="text-5xl md:text-6xl font-display font-bold mb-8 text-dark-900 dark:text-cream-100"
+          >
+            8A.9 Sprint tiếp theo
+          </h2>
+          <div class="space-y-6">
+            <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card">
+              <h3
+                class="text-2xl font-display font-bold mb-4 text-dark-900 dark:text-cream-100"
+              >
+                Sprint Goal:
+              </h3>
+              <p class="text-xl italic text-slice-600 dark:text-slice-400 mb-6">
+                "Khách thanh toán QR thành công"
+              </p>
+              <h3
+                class="text-2xl font-display font-bold mb-4 text-dark-900 dark:text-cream-100"
+              >
+                Thêm backlog:
+              </h3>
+              <ul class="list-disc list-inside space-y-2 text-lg ml-4">
+                <li>QR Payment</li>
+                <li>Xử lý lỗi thanh toán</li>
+                <li>Loading & empty state</li>
+              </ul>
+            </div>
+            <p class="text-lg font-semibold text-slice-600 dark:text-slice-400">
+              ➡️ Lặp lại vòng Scrum
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 29: Lợi ích -->
+      <section class="slide flex items-center justify-center min-h-screen p-8">
+        <div class="max-w-6xl mx-auto">
+          <h2
+            class="text-5xl md:text-6xl font-display font-bold mb-8 text-dark-900 dark:text-cream-100"
+          >
+            9. Lợi ích khi áp dụng Scrum đúng cách
+          </h2>
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card">
+              <h3
+                class="text-2xl font-display font-bold mb-4 text-blue-600 dark:text-blue-400"
+              >
+                Business
+              </h3>
+              <ul class="list-disc list-inside space-y-2 text-lg ml-4">
+                <li>Faster time-to-market</li>
+                <li>Giảm rủi ro</li>
+                <li>ROI cao hơn</li>
+              </ul>
+            </div>
+            <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card">
+              <h3
+                class="text-2xl font-display font-bold mb-4 text-green-600 dark:text-green-400"
+              >
+                Team
+              </h3>
+              <ul class="list-disc list-inside space-y-2 text-lg ml-4">
+                <li>Minh bạch</li>
+                <li>Tự chủ</li>
+                <li>Ít burnout</li>
+              </ul>
+            </div>
+            <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card">
+              <h3
+                class="text-2xl font-display font-bold mb-4 text-purple-600 dark:text-purple-400"
+              >
+                Khách hàng
+              </h3>
+              <ul class="list-disc list-inside space-y-2 text-lg ml-4">
+                <li>Nhận giá trị sớm</li>
+                <li>Dễ phản hồi</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 30: Sai lầm phổ biến -->
+      <section class="slide flex items-center justify-center min-h-screen p-8">
+        <div class="max-w-6xl mx-auto">
+          <h2
+            class="text-5xl md:text-6xl font-display font-bold mb-8 text-dark-900 dark:text-cream-100"
+          >
+            10. Sai lầm phổ biến khi áp dụng Scrum
+          </h2>
+          <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card">
+            <div class="grid md:grid-cols-2 gap-4">
+              <div
+                class="bg-red-50 dark:bg-red-900/20 rounded-xl p-4 border-l-4 border-red-500"
+              >
+                <p class="text-lg font-semibold">PO kiêm PM</p>
+                <p class="text-sm text-dark-600 dark:text-dark-400">
+                  → mất cân bằng
+                </p>
+              </div>
+              <div
+                class="bg-red-50 dark:bg-red-900/20 rounded-xl p-4 border-l-4 border-red-500"
+              >
+                <p class="text-lg font-semibold">Scrum Master thành quản lý</p>
+              </div>
+              <div
+                class="bg-red-50 dark:bg-red-900/20 rounded-xl p-4 border-l-4 border-red-500"
+              >
+                <p class="text-lg font-semibold">Daily Scrum thành báo cáo</p>
+              </div>
+              <div
+                class="bg-red-50 dark:bg-red-900/20 rounded-xl p-4 border-l-4 border-red-500"
+              >
+                <p class="text-lg font-semibold">Không có Definition of Done</p>
+              </div>
+            </div>
+            <p
+              class="text-xl font-semibold text-red-600 dark:text-red-400 text-center mt-6"
+            >
+              ➡️ Scrum fail vì <strong>làm sai tư duy</strong>, không phải
+              framework
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 31: Khi nào Scrum KHÔNG phù hợp -->
+      <section class="slide flex items-center justify-center min-h-screen p-8">
+        <div class="max-w-6xl mx-auto">
+          <h2
+            class="text-5xl md:text-6xl font-display font-bold mb-8 text-dark-900 dark:text-cream-100"
+          >
+            11. Khi nào Scrum KHÔNG phù hợp?
+          </h2>
+          <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card">
+            <div class="space-y-4">
+              <div
+                class="bg-yellow-50 dark:bg-yellow-900/20 rounded-xl p-4 border-l-4 border-yellow-500"
+              >
+                <p class="text-xl font-semibold">Công việc lặp lại</p>
+              </div>
+              <div
+                class="bg-yellow-50 dark:bg-yellow-900/20 rounded-xl p-4 border-l-4 border-yellow-500"
+              >
+                <p class="text-xl font-semibold">Yêu cầu cố định</p>
+              </div>
+              <div
+                class="bg-yellow-50 dark:bg-yellow-900/20 rounded-xl p-4 border-l-4 border-yellow-500"
+              >
+                <p class="text-xl font-semibold">
+                  Team chưa sẵn sàng tự tổ chức
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 32: Kết luận -->
+      <section class="slide flex items-center justify-center min-h-screen p-8">
+        <div class="text-center max-w-5xl mx-auto">
+          <h2
+            class="text-5xl md:text-6xl font-display font-bold mb-12 text-dark-900 dark:text-cream-100"
+          >
+            12. Kết luận
+          </h2>
+          <div class="space-y-6 mb-12">
+            <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card">
+              <p
+                class="text-2xl font-semibold text-slice-600 dark:text-slice-400 mb-2"
+              >
+                Agile = Tư duy
+              </p>
+            </div>
+            <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card">
+              <p
+                class="text-2xl font-semibold text-slice-600 dark:text-slice-400 mb-2"
+              >
+                Scrum = Công cụ
+              </p>
+            </div>
+            <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card">
+              <p
+                class="text-2xl font-semibold text-slice-600 dark:text-slice-400 mb-2"
+              >
+                Giá trị > Quy trình
+              </p>
+            </div>
+          </div>
+          <div
+            class="bg-gradient-to-br from-slice-50 to-cream-100 dark:from-dark-800 dark:to-dark-700 rounded-3xl p-8 shadow-card border-2 border-slice-200 dark:border-slice-800"
+          >
+            <p
+              class="text-xl md:text-2xl italic text-dark-700 dark:text-dark-200"
+            >
+              "Scrum không giúp bạn thành công ngay, nhưng giúp bạn thất bại sớm
+              – để sửa kịp."
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div
+      class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4"
+    >
+      <button
+        id="prev-btn"
+        class="bg-white dark:bg-dark-800 text-dark-900 dark:text-cream-100 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
+        aria-label="Previous slide"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"></path>
+        </svg>
+      </button>
+
+      <div
+        id="slide-indicators"
+        class="flex gap-2 bg-white/90 dark:bg-dark-800/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg"
+      >
+        <!-- Indicators will be generated by JS -->
+      </div>
+
+      <button
+        id="next-btn"
+        class="bg-white dark:bg-dark-800 text-dark-900 dark:text-cream-100 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
+        aria-label="Next slide"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 5l7 7-7 7"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Slide Counter -->
+    <div
+      class="fixed top-8 right-8 z-50 bg-white/90 dark:bg-dark-800/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg"
+    >
+      <span
+        id="slide-counter"
+        class="text-sm font-semibold text-dark-900 dark:text-cream-100"
+      >
+        1 / 32
+      </span>
+    </div>
+
+    <!-- Exit Button -->
+    <a
+      href={getLocalizedPath("/", lang)}
+      class="fixed top-8 left-8 z-50 bg-white/90 dark:bg-dark-800/90 backdrop-blur-sm p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+      aria-label="Exit presentation"
+    >
+      <svg
+        class="w-6 h-6 text-dark-900 dark:text-cream-100"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </a>
+  </div>
+
+  <style>
+    .slide {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transform: translateX(50px);
+      transition:
+        opacity 0.5s ease,
+        transform 0.5s ease;
+    }
+
+    .slide.active {
+      display: flex;
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .slide.prev {
+      transform: translateX(-50px);
+    }
+
+    #slide-indicators button {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.2);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #slide-indicators button.active {
+      background-color: rgb(241, 147, 64);
+      width: 24px;
+      border-radius: 4px;
+    }
+
+    @media (max-width: 768px) {
+      #slide-indicators {
+        display: none;
+      }
+    }
+  </style>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll(".slide");
+    const totalSlides = slides.length;
+    const prevBtn = document.getElementById(
+      "prev-btn"
+    ) as HTMLButtonElement | null;
+    const nextBtn = document.getElementById(
+      "next-btn"
+    ) as HTMLButtonElement | null;
+
+    function updateSlide() {
+      slides.forEach((slide, index) => {
+        slide.classList.remove("active", "prev");
+        if (index === currentSlide) {
+          slide.classList.add("active");
+        } else if (index < currentSlide) {
+          slide.classList.add("prev");
+        }
+      });
+
+      const slideCounter = document.getElementById("slide-counter");
+      if (slideCounter) {
+        slideCounter.textContent = `${currentSlide + 1} / ${totalSlides}`;
+      }
+
+      if (prevBtn) {
+        prevBtn.disabled = currentSlide === 0;
+      }
+      if (nextBtn) {
+        nextBtn.disabled = currentSlide === totalSlides - 1;
+      }
+
+      updateIndicators();
+    }
+
+    function updateIndicators() {
+      const container = document.getElementById("slide-indicators");
+      if (!container) return;
+
+      container.innerHTML = "";
+
+      for (let i = 0; i < totalSlides; i++) {
+        const btn = document.createElement("button");
+        if (i === currentSlide) {
+          btn.classList.add("active");
+        }
+        btn.addEventListener("click", () => {
+          currentSlide = i;
+          updateSlide();
+        });
+        container.appendChild(btn);
+      }
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener("click", () => {
+        if (currentSlide > 0) {
+          currentSlide--;
+          updateSlide();
+        }
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener("click", () => {
+        if (currentSlide < totalSlides - 1) {
+          currentSlide++;
+          updateSlide();
+        }
+      });
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft" && currentSlide > 0) {
+        currentSlide--;
+        updateSlide();
+      } else if (e.key === "ArrowRight" && currentSlide < totalSlides - 1) {
+        currentSlide++;
+        updateSlide();
+      } else if (e.key === "Home") {
+        currentSlide = 0;
+        updateSlide();
+      } else if (e.key === "End") {
+        currentSlide = totalSlides - 1;
+        updateSlide();
+      }
+    });
+
+    updateSlide();
+  </script>
+</Layout>
