@@ -3,9 +3,11 @@ export const languages = {
   vi: 'Tiếng Việt',
 };
 
-export const defaultLang = 'en' as const;
-
 export type Language = keyof typeof languages;
+
+const envDefaultLang = import.meta.env.PUBLIC_DEFAULT_LANG;
+const isValidDefaultLang = envDefaultLang && envDefaultLang in languages;
+export const defaultLang = (isValidDefaultLang ? envDefaultLang : 'en') as Language;
 
 export const ui = {
   en: {
