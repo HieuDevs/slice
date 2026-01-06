@@ -2,6 +2,8 @@
 import Layout from "../../layouts/Layout.astro";
 import { languages, getLocalizedPath, type Language } from "../../i18n";
 
+export const prerender = true;
+
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => ({
     params: { lang },
@@ -18,7 +20,7 @@ const { lang } = Astro.params as { lang: Language };
 >
   <div
     id="presentation-container"
-    class="fixed inset-0 bg-gradient-to-br from-cream-50 to-cream-100 dark:from-dark-950 dark:to-dark-900 overflow-hidden"
+    class="fixed inset-0 bg-linear-to-br from-cream-50 to-cream-100 dark:from-dark-950 dark:to-dark-900 overflow-hidden"
   >
     <!-- Slide Container -->
     <div id="slides-container" class="h-full w-full relative">
@@ -37,7 +39,7 @@ const { lang } = Astro.params as { lang: Language };
               Agile & Scrum
             </h1>
             <div
-              class="w-32 h-1 bg-gradient-to-r from-slice-500 to-slice-400 mx-auto rounded-full"
+              class="w-32 h-1 bg-linear-to-r from-slice-500 to-slice-400 mx-auto rounded-full"
             >
             </div>
           </div>
@@ -117,7 +119,7 @@ const { lang } = Astro.params as { lang: Language };
               >
             </p>
             <div
-              class="bg-gradient-to-br from-slice-50 to-cream-100 dark:from-dark-800 dark:to-dark-700 rounded-3xl p-8 shadow-card"
+              class="bg-linear-to-br from-slice-50 to-cream-100 dark:from-dark-800 dark:to-dark-700 rounded-3xl p-8 shadow-card"
             >
               <h3
                 class="text-3xl font-display font-bold mb-6 text-dark-900 dark:text-cream-100"
@@ -256,7 +258,7 @@ const { lang } = Astro.params as { lang: Language };
               <div
                 class="flex items-start space-x-3 p-3 rounded-lg bg-cream-50 dark:bg-dark-700"
               >
-                <span class="text-slice-500 font-bold flex-shrink-0">1.</span>
+                <span class="text-slice-500 font-bold shrink-0">1.</span>
                 <span
                   >Ưu tiên cao nhất: <strong>thỏa mãn khách hàng</strong></span
                 >
@@ -264,67 +266,67 @@ const { lang } = Astro.params as { lang: Language };
               <div
                 class="flex items-start space-x-3 p-3 rounded-lg bg-cream-50 dark:bg-dark-700"
               >
-                <span class="text-slice-500 font-bold flex-shrink-0">2.</span>
+                <span class="text-slice-500 font-bold shrink-0">2.</span>
                 <span>Chấp nhận thay đổi – kể cả cuối dự án</span>
               </div>
               <div
                 class="flex items-start space-x-3 p-3 rounded-lg bg-cream-50 dark:bg-dark-700"
               >
-                <span class="text-slice-500 font-bold flex-shrink-0">3.</span>
+                <span class="text-slice-500 font-bold shrink-0">3.</span>
                 <span>Giao sản phẩm thường xuyên</span>
               </div>
               <div
                 class="flex items-start space-x-3 p-3 rounded-lg bg-cream-50 dark:bg-dark-700"
               >
-                <span class="text-slice-500 font-bold flex-shrink-0">4.</span>
+                <span class="text-slice-500 font-bold shrink-0">4.</span>
                 <span>Business & Dev làm việc hằng ngày</span>
               </div>
               <div
                 class="flex items-start space-x-3 p-3 rounded-lg bg-cream-50 dark:bg-dark-700"
               >
-                <span class="text-slice-500 font-bold flex-shrink-0">5.</span>
+                <span class="text-slice-500 font-bold shrink-0">5.</span>
                 <span>Xây dựng dự án quanh người có động lực</span>
               </div>
               <div
                 class="flex items-start space-x-3 p-3 rounded-lg bg-cream-50 dark:bg-dark-700"
               >
-                <span class="text-slice-500 font-bold flex-shrink-0">6.</span>
+                <span class="text-slice-500 font-bold shrink-0">6.</span>
                 <span>Giao tiếp trực tiếp là hiệu quả nhất</span>
               </div>
               <div
                 class="flex items-start space-x-3 p-3 rounded-lg bg-cream-50 dark:bg-dark-700"
               >
-                <span class="text-slice-500 font-bold flex-shrink-0">7.</span>
+                <span class="text-slice-500 font-bold shrink-0">7.</span>
                 <span>Phần mềm chạy được = tiến độ</span>
               </div>
               <div
                 class="flex items-start space-x-3 p-3 rounded-lg bg-cream-50 dark:bg-dark-700"
               >
-                <span class="text-slice-500 font-bold flex-shrink-0">8.</span>
+                <span class="text-slice-500 font-bold shrink-0">8.</span>
                 <span>Nhịp độ bền vững (không burnout)</span>
               </div>
               <div
                 class="flex items-start space-x-3 p-3 rounded-lg bg-cream-50 dark:bg-dark-700"
               >
-                <span class="text-slice-500 font-bold flex-shrink-0">9.</span>
+                <span class="text-slice-500 font-bold shrink-0">9.</span>
                 <span>Kỹ thuật tốt tạo ra tốc độ lâu dài</span>
               </div>
               <div
                 class="flex items-start space-x-3 p-3 rounded-lg bg-cream-50 dark:bg-dark-700"
               >
-                <span class="text-slice-500 font-bold flex-shrink-0">10.</span>
+                <span class="text-slice-500 font-bold shrink-0">10.</span>
                 <span>Đơn giản hóa tối đa</span>
               </div>
               <div
                 class="flex items-start space-x-3 p-3 rounded-lg bg-cream-50 dark:bg-dark-700"
               >
-                <span class="text-slice-500 font-bold flex-shrink-0">11.</span>
+                <span class="text-slice-500 font-bold shrink-0">11.</span>
                 <span>Team tự tổ chức</span>
               </div>
               <div
                 class="flex items-start space-x-3 p-3 rounded-lg bg-cream-50 dark:bg-dark-700"
               >
-                <span class="text-slice-500 font-bold flex-shrink-0">12.</span>
+                <span class="text-slice-500 font-bold shrink-0">12.</span>
                 <span>Luôn phản tư & cải tiến</span>
               </div>
             </div>
@@ -365,7 +367,7 @@ const { lang } = Astro.params as { lang: Language };
               </ul>
             </div>
             <div
-              class="bg-gradient-to-br from-slice-50 to-cream-100 dark:from-dark-800 dark:to-dark-700 rounded-2xl p-6 shadow-card"
+              class="bg-linear-to-br from-slice-50 to-cream-100 dark:from-dark-800 dark:to-dark-700 rounded-2xl p-6 shadow-card"
             >
               <h3
                 class="text-3xl font-display font-bold mb-4 text-dark-900 dark:text-cream-100"
@@ -463,7 +465,7 @@ const { lang } = Astro.params as { lang: Language };
           </h2>
           <div class="space-y-6">
             <div
-              class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-2xl p-6 border-2 border-blue-200 dark:border-blue-800"
+              class="bg-linear-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-2xl p-6 border-2 border-blue-200 dark:border-blue-800"
             >
               <p
                 class="text-2xl font-bold mb-4 text-blue-700 dark:text-blue-400"
@@ -516,7 +518,7 @@ const { lang } = Astro.params as { lang: Language };
           </h2>
           <div class="space-y-6">
             <div
-              class="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-2xl p-6 border-2 border-purple-200 dark:border-purple-800"
+              class="bg-linear-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-2xl p-6 border-2 border-purple-200 dark:border-purple-800"
             >
               <p
                 class="text-2xl font-bold mb-4 text-purple-700 dark:text-purple-400"
@@ -885,7 +887,7 @@ const { lang } = Astro.params as { lang: Language };
               </ul>
             </div>
             <div
-              class="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-2xl p-6 border-2 border-purple-200 dark:border-purple-800"
+              class="bg-linear-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-2xl p-6 border-2 border-purple-200 dark:border-purple-800"
             >
               <h3
                 class="text-2xl font-display font-bold mb-4 text-dark-900 dark:text-cream-100"
@@ -1536,7 +1538,7 @@ const { lang } = Astro.params as { lang: Language };
             </div>
           </div>
           <div
-            class="bg-gradient-to-br from-slice-50 to-cream-100 dark:from-dark-800 dark:to-dark-700 rounded-3xl p-8 shadow-card border-2 border-slice-200 dark:border-slice-800"
+            class="bg-linear-to-br from-slice-50 to-cream-100 dark:from-dark-800 dark:to-dark-700 rounded-3xl p-8 shadow-card border-2 border-slice-200 dark:border-slice-800"
           >
             <p
               class="text-xl md:text-2xl italic text-dark-700 dark:text-dark-200"
@@ -1579,7 +1581,7 @@ const { lang } = Astro.params as { lang: Language };
       >
         <div
           id="progress-bar"
-          class="h-full bg-gradient-to-r from-slice-500 to-slice-400 rounded-full transition-all duration-300 ease-out"
+          class="h-full bg-linear-to-r from-slice-500 to-slice-400 rounded-full transition-all duration-300 ease-out"
           style="width: 0%"
         >
         </div>

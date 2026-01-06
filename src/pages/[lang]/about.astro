@@ -6,7 +6,16 @@ import {
   getLocalizedPath,
   type Language,
 } from "../../i18n";
-import testPng from "../../assets/test.png";
+
+const teamImages = import.meta.glob<{ default: ImageMetadata }>(
+  "../../assets/test_*.png",
+  { eager: true }
+);
+const [test0, test1, test2, test3, test4] = Object.values(teamImages).map(
+  (img) => img.default
+);
+
+export const prerender = true;
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => ({
@@ -23,7 +32,7 @@ const teamMembers = [
     name: "Hieu Bui",
     role: "CTO & Founder",
     bioKey: "about.team.hieu.bio",
-    image: testPng.src,
+    image: test0.src,
     social: {
       twitter: "#",
       linkedin: "#",
@@ -37,7 +46,7 @@ const teamMembers = [
     name: "Nhi Bao",
     role: "Marketing Manager",
     bioKey: "about.team.nhi.bio",
-    image: testPng.src,
+    image: test1.src,
     social: {
       twitter: "#",
       linkedin: "#",
@@ -51,7 +60,7 @@ const teamMembers = [
     name: "Hung Ngo",
     role: "Marketing Leader",
     bioKey: "about.team.hung.bio",
-    image: testPng.src,
+    image: test2.src,
     social: {
       twitter: "#",
       linkedin: "#",
@@ -65,7 +74,7 @@ const teamMembers = [
     name: "Son Minh",
     role: "Designer",
     bioKey: "about.team.son.bio",
-    image: testPng.src,
+    image: test3.src,
     social: {
       twitter: "#",
       linkedin: "#",
@@ -79,7 +88,7 @@ const teamMembers = [
     name: "Phu Minh",
     role: "Designer",
     bioKey: "about.team.phu.bio",
-    image: testPng.src,
+    image: test4.src,
     social: {
       twitter: "#",
       linkedin: "#",
@@ -116,7 +125,7 @@ const values = [
   lang={lang}
 >
   <section
-    class="py-24 bg-gradient-to-b from-cream-100 to-cream-50 dark:from-dark-900 dark:to-dark-950 relative overflow-hidden"
+    class="py-24 bg-linear-to-b from-cream-100 to-cream-50 dark:from-dark-900 dark:to-dark-950 relative overflow-hidden"
   >
     <div
       class="absolute top-0 right-0 w-[500px] h-[500px] bg-slice-400/10 rounded-full blur-3xl"
@@ -174,27 +183,22 @@ const values = [
               style={`animation-delay: ${index * 100}ms`}
             >
               <div
-                class={`relative rounded-xl overflow-hidden shadow-card group-hover:shadow-card-hover transition-all duration-500 border-2 border-transparent ${member.borderHoverColor} aspect-[3/4]`}
+                class={`relative rounded-xl overflow-hidden shadow-card group-hover:shadow-card-hover transition-all duration-500 border-2 border-transparent ${member.borderHoverColor} aspect-3/4`}
               >
                 <img
                   src={member.image}
                   alt={member.name}
-                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  class="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110"
                 />
-                <div
-                  class={`absolute inset-0 bg-gradient-to-t ${member.color} opacity-60 group-hover:opacity-70 transition-opacity duration-500`}
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-
-                <div class="absolute inset-0 flex flex-col justify-between p-4">
-                  <div class="flex flex-col items-center text-center mt-auto">
+                <div class="absolute bottom-0 left-0 right-0 backdrop-blur-md bg-black/40 p-4">
+                  <div class="flex flex-col items-center text-center">
                     <h3 class="font-display text-lg font-bold text-white mb-1">
                       {member.name}
                     </h3>
                     <p class="text-white/90 text-xs font-medium mb-2">
                       {member.role}
                     </p>
-                    <p class="text-white/80 text-xs leading-relaxed mb-4">
+                    <p class="text-white/80 text-xs leading-relaxed mb-3">
                       {t(member.bioKey as any)}
                     </p>
                   </div>
@@ -264,7 +268,7 @@ const values = [
       <div class="grid md:grid-cols-3 gap-8">
         {
           values.map((value, index) => (
-            <div class="text-center p-8 rounded-3xl bg-cream-50 dark:bg-dark-800 hover:bg-gradient-to-br hover:from-slice-50 hover:to-cream-100 dark:hover:from-dark-700 dark:hover:to-dark-800 transition-all duration-500 group">
+            <div class="text-center p-8 rounded-3xl bg-cream-50 dark:bg-dark-800 hover:bg-linear-to-br hover:from-slice-50 hover:to-cream-100 dark:hover:from-dark-700 dark:hover:to-dark-800 transition-all duration-500 group">
               <div class="w-20 h-20 bg-white dark:bg-dark-700 rounded-2xl flex items-center justify-center mx-auto mb-6 text-slice-500 shadow-card group-hover:shadow-glow group-hover:scale-110 transition-all duration-500">
                 <Fragment set:html={value.icon} />
               </div>
@@ -282,7 +286,7 @@ const values = [
   </section>
 
   <section
-    class="py-24 bg-gradient-to-r from-dark-900 to-dark-950 text-white relative overflow-hidden"
+    class="py-24 bg-linear-to-r from-dark-900 to-dark-950 text-white relative overflow-hidden"
   >
     <div class="absolute inset-0">
       <div

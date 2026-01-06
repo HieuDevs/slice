@@ -7,6 +7,8 @@ import {
   type Language,
 } from "../../i18n";
 
+export const prerender = true;
+
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => ({
     params: { lang },
@@ -55,7 +57,7 @@ const stats = [
 >
   <section class="relative min-h-[90vh] flex items-center overflow-hidden">
     <div
-      class="absolute inset-0 bg-gradient-to-br from-cream-100 via-cream-50 to-slice-50 dark:from-dark-900 dark:via-dark-950 dark:to-dark-900"
+      class="absolute inset-0 bg-linear-to-br from-cream-100 via-cream-50 to-slice-50 dark:from-dark-900 dark:via-dark-950 dark:to-dark-900"
     >
     </div>
     <div
@@ -139,7 +141,7 @@ const stats = [
         >
           <div class="relative">
             <div
-              class="absolute -inset-4 bg-gradient-to-r from-slice-400 to-slice-600 rounded-3xl blur-2xl opacity-30 animate-pulse-slow"
+              class="absolute -inset-4 bg-linear-to-r from-slice-400 to-slice-600 rounded-3xl blur-2xl opacity-30 animate-pulse-slow"
             >
             </div>
             <div
@@ -147,7 +149,7 @@ const stats = [
             >
               <div class="grid grid-cols-2 gap-4">
                 <div
-                  class="bg-gradient-to-br from-slice-50 to-slice-100 dark:from-slice-900/30 dark:to-slice-800/30 rounded-2xl p-6 text-center"
+                  class="bg-linear-to-br from-slice-50 to-slice-100 dark:from-slice-900/30 dark:to-slice-800/30 rounded-2xl p-6 text-center"
                 >
                   <div
                     class="w-12 h-12 bg-slice-500 rounded-xl mx-auto mb-3 flex items-center justify-center"
@@ -173,7 +175,7 @@ const stats = [
                   </p>
                 </div>
                 <div
-                  class="bg-gradient-to-br from-dark-50 to-dark-100 dark:from-dark-700 dark:to-dark-600 rounded-2xl p-6 text-center"
+                  class="bg-linear-to-br from-dark-50 to-dark-100 dark:from-dark-700 dark:to-dark-600 rounded-2xl p-6 text-center"
                 >
                   <div
                     class="w-12 h-12 bg-dark-900 rounded-xl mx-auto mb-3 flex items-center justify-center"
@@ -199,7 +201,7 @@ const stats = [
                   </p>
                 </div>
                 <div
-                  class="col-span-2 bg-gradient-to-r from-slice-500 to-slice-600 rounded-2xl p-6 text-white"
+                  class="col-span-2 bg-linear-to-r from-slice-500 to-slice-600 rounded-2xl p-6 text-white"
                 >
                   <div class="flex items-center gap-4">
                     <div
