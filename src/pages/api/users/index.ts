@@ -4,16 +4,16 @@ import { getAuthenticatedUser } from "../../../utils/auth";
 
 export const prerender = false;
 
-// GET: Get all users (admin only)
+// GET: Get all users (authenticated users can view)
 export const GET: APIRoute = async ({ request }) => {
     // Get authenticated user from token
     const user = await getAuthenticatedUser(request);
-    
-    if (!user || user.role !== "admin") {
+
+    if (!user) {
         return new Response(
-            JSON.stringify({ error: "Forbidden. Admin access required." }),
+            JSON.stringify({ error: "Authentication required." }),
             {
-                status: 403,
+                status: 401,
                 headers: { "Content-Type": "application/json" },
             }
         );

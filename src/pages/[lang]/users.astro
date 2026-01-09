@@ -256,18 +256,28 @@ const t = useTranslations(lang);
           headers: getAuthHeaders(),
         });
 
-        if (response.status === 403) {
-          window.location.href = `/${lang}/internal`;
-          return;
-        }
-
         if (!response.ok) {
+          if (response.status === 403) {
+            // User doesn't have permission to view users list
+            usersList.innerHTML = `
+              <div class="card p-8 text-center border-2 border-red-200 dark:border-red-800 bg-red-50/50 dark:bg-red-900/20">
+                <p class="text-red-600 dark:text-red-400">${translations.forbidden}</p>
+              </div>
+            `;
+            // Set admin status to false
+            window.currentUserIsAdmin = false;
+            updateUIVisibility();
+            return;
+          }
           throw new Error("Failed to load users");
         }
 
         const data = await response.json();
         const users = data.users || [];
         const isAdmin = data.isAdmin || false;
+
+        // Store admin status globally for form visibility
+        window.currentUserIsAdmin = isAdmin;
 
         if (users.length === 0) {
           usersList.innerHTML = `
@@ -315,6 +325,9 @@ const t = useTranslations(lang);
           `
           )
           .join("");
+
+        // Update UI visibility based on admin status
+        updateUIVisibility();
       } catch (error) {
         console.error("Error loading users:", error);
         usersList.innerHTML = `
@@ -322,6 +335,9 @@ const t = useTranslations(lang);
             <p class="text-red-600 dark:text-red-400">${translations.error}</p>
           </div>
         `;
+        // Set admin status to false in case of error
+        window.currentUserIsAdmin = false;
+        updateUIVisibility();
       }
     }
 
@@ -376,6 +392,16 @@ const t = useTranslations(lang);
     // Handle form submit
     form?.addEventListener("submit", async (e) => {
       e.preventDefault();
+
+      // Check if user is admin
+      if (!window.currentUserIsAdmin) {
+        errorText.textContent = translations.forbidden;
+        errorMessage.classList.remove("hidden");
+        setTimeout(() => {
+          errorMessage.classList.add("hidden");
+        }, 3000);
+        return;
+      }
 
       const passwordInput = document.getElementById("password");
       const roleSelect = document.getElementById("role");
@@ -454,6 +480,26 @@ const t = useTranslations(lang);
         submitBtn.textContent = translations.create;
       }
     });
+
+    // Hide create user form for non-admin users
+    function updateUIVisibility() {
+      const createUserForm = document.getElementById("create-user-form");
+      const createUserSection = document.querySelector(".lg\\:col-span-4"); // The form container
+
+      if (createUserForm && createUserSection) {
+        if (window.currentUserIsAdmin) {
+          createUserSection.style.display = "block";
+        } else {
+          createUserSection.style.display = "none";
+          // Adjust grid layout when form is hidden
+          const usersListContainer = document.querySelector(".lg\\:col-span-8");
+          if (usersListContainer) {
+            usersListContainer.classList.remove("lg:col-span-8");
+            usersListContainer.classList.add("lg:col-span-12");
+          }
+        }
+      }
+    }
 
     // Initial load
     loadUsers();
