@@ -26,30 +26,24 @@ const user = Astro.locals.user;
     class="min-h-screen py-24 bg-linear-to-br from-cream-50 to-cream-100 dark:from-dark-950 dark:to-dark-900"
   >
     <div class="max-w-6xl mx-auto px-4">
-      <!-- Header with Logout -->
+      <!-- Header -->
       <div
-        class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-12 opacity-0 animate-fade-in"
+        class="flex flex-col items-start gap-4 mb-12 opacity-0 animate-fade-in"
         style="animation-delay: 100ms"
       >
-        <div>
-          <h1
-            id="welcome-message"
-            class="text-4xl md:text-5xl font-display font-bold text-dark-900 dark:text-cream-100 mb-2"
-          >
-            {
-              user
-                ? t("internal.welcome").replace("{username}", user.username)
-                : t("internal.welcome").replace("{username}", "")
-            }
-          </h1>
-          <p class="text-lg text-dark-600 dark:text-dark-300">
-            {t("internal.subtitle")}
-          </p>
-        </div>
-        <button id="logout-btn" class="btn-secondary flex items-center gap-2">
-          <Icon name="heroicons:arrow-right-on-rectangle" class="w-5 h-5" />
-          {t("internal.logout")}
-        </button>
+        <h1
+          id="welcome-message"
+          class="text-4xl md:text-5xl font-display font-bold text-dark-900 dark:text-cream-100 mb-2"
+        >
+          {
+            user
+              ? t("internal.welcome").replace("{username}", user.username)
+              : t("internal.welcome").replace("{username}", "")
+          }
+        </h1>
+        <p class="text-lg text-dark-600 dark:text-dark-300">
+          {t("internal.subtitle")}
+        </p>
       </div>
 
       <!-- Resources Grid -->
@@ -205,24 +199,6 @@ const user = Astro.locals.user;
 </Layout>
 
 <script is:inline define:vars={{ lang, user }}>
-  // Function to setup logout button
-  function setupLogoutButton() {
-    const logoutBtn = document.getElementById("logout-btn");
-    logoutBtn?.addEventListener("click", () => {
-      // Clear all user-related authentication data
-      localStorage.removeItem("token");
-      localStorage.removeItem("isLoggedIn");
-      localStorage.removeItem("username");
-
-      // Clear authentication cookie
-      document.cookie =
-        "token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax";
-
-      // Redirect to home page
-      window.location.href = `/${lang}`;
-    });
-  }
-
   // Function to check admin status and show user management card
   function checkAdminStatus() {
     // Check if user is admin using server-side user data
@@ -236,7 +212,6 @@ const user = Astro.locals.user;
   // Initialize on page load
   function initializePage() {
     updateWelcomeMessage();
-    setupLogoutButton();
     checkAdminStatus();
   }
 

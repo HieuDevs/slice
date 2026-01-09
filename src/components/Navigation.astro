@@ -80,14 +80,19 @@ const currentPathWithoutLang = getPathWithoutLang(currentPath);
       <div class="hidden md:flex items-center gap-4">
         <ThemeToggle />
         <LanguageSwitcher />
-        <a
-          id="get-started-btn"
-          href={getLocalizedPath(PATH_MAP.LOGIN, lang)}
-          class="btn-primary"
+        <button
+          id="auth-btn"
+          class="btn-primary flex items-center gap-2"
+          data-get-started-text={t("nav.getStarted")}
+          data-logout-text={t("nav.logout")}
         >
-          {t("nav.getStarted")}
-          <Icon name="heroicons:arrow-right" class="w-4 h-4 ml-2" />
-        </a>
+          <span id="auth-btn-text">{t("nav.getStarted")}</span>
+          <Icon
+            id="auth-btn-icon"
+            name="heroicons:arrow-right"
+            class="w-4 h-4"
+          />
+        </button>
       </div>
 
       <button
@@ -139,13 +144,19 @@ const currentPathWithoutLang = getPathWithoutLang(currentPath);
         <ThemeToggle />
         <LanguageSwitcher />
       </div>
-      <a
-        id="get-started-btn-mobile"
-        href={getLocalizedPath("/login", lang)}
-        class="btn-primary w-full mt-4"
+      <button
+        id="auth-btn-mobile"
+        class="btn-primary w-full mt-4 flex items-center justify-center gap-2"
+        data-get-started-text={t("nav.getStarted")}
+        data-logout-text={t("nav.logout")}
       >
-        {t("nav.getStarted")}
-      </a>
+        <span id="auth-btn-mobile-text">{t("nav.getStarted")}</span>
+        <Icon
+          id="auth-btn-mobile-icon"
+          name="heroicons:arrow-right"
+          class="w-4 h-4"
+        />
+      </button>
     </div>
   </div>
 </nav>
@@ -158,26 +169,68 @@ const currentPathWithoutLang = getPathWithoutLang(currentPath);
     mobileMenu?.classList.toggle("hidden");
   });
 
+  // Function to setup authentication button functionality
+  function setupAuthButton() {
+    const handleAuthClick = () => {
+      const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+      if (isLoggedIn === "true") {
+        // User is logged in - perform logout
+        // Clear all user-related authentication data
+        localStorage.removeItem("token");
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("username");
+
+        // Clear authentication cookie
+        document.cookie =
+          "token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax";
+
+        // Redirect to home page
+        window.location.href = window.location.pathname.startsWith("/vi")
+          ? "/vi"
+          : "/en";
+      } else {
+        // User is not logged in - redirect to login
+        window.location.href = window.location.pathname.startsWith("/vi")
+          ? "/vi/login"
+          : "/en/login";
+      }
+    };
+
+    const authBtn = document.getElementById("auth-btn");
+    const authBtnMobile = document.getElementById("auth-btn-mobile");
+
+    authBtn?.addEventListener("click", handleAuthClick);
+    authBtnMobile?.addEventListener("click", handleAuthClick);
+  }
+
   // Function to update navigation based on login status
   function updateNavigation() {
     const isLoggedIn = localStorage.getItem("isLoggedIn");
-    const getStartedBtn = document.getElementById("get-started-btn");
-    const getStartedBtnMobile = document.getElementById(
-      "get-started-btn-mobile"
-    );
+    const authBtn = document.getElementById("auth-btn");
+    const authBtnMobile = document.getElementById("auth-btn-mobile");
+    const authBtnText = document.getElementById("auth-btn-text");
+    const authBtnMobileText = document.getElementById("auth-btn-mobile-text");
+    const authBtnIcon = document.getElementById("auth-btn-icon");
+    const authBtnMobileIcon = document.getElementById("auth-btn-mobile-icon");
     const internalNavLink = document.getElementById("internal-nav-link");
     const internalNavLinkMobile = document.getElementById(
       "internal-nav-link-mobile"
     );
 
     if (isLoggedIn === "true") {
-      // User is logged in - hide "Get Started" and show "Internal"
-      if (getStartedBtn) {
-        getStartedBtn.style.display = "none";
-      }
-      if (getStartedBtnMobile) {
-        getStartedBtnMobile.style.display = "none";
-      }
+      // User is logged in - show "Logout" and show "Internal"
+      const logoutText = authBtn?.getAttribute("data-logout-text") || "Logout";
+      if (authBtnText) authBtnText.textContent = logoutText;
+      if (authBtnMobileText) authBtnMobileText.textContent = logoutText;
+      if (authBtnIcon)
+        authBtnIcon.setAttribute("name", "heroicons:arrow-right-on-rectangle");
+      if (authBtnMobileIcon)
+        authBtnMobileIcon.setAttribute(
+          "name",
+          "heroicons:arrow-right-on-rectangle"
+        );
+
       if (internalNavLink) {
         internalNavLink.classList.remove("hidden");
       }
@@ -186,12 +239,15 @@ const currentPathWithoutLang = getPathWithoutLang(currentPath);
       }
     } else {
       // User is not logged in - show "Get Started" and hide "Internal"
-      if (getStartedBtn) {
-        getStartedBtn.style.display = "";
-      }
-      if (getStartedBtnMobile) {
-        getStartedBtnMobile.style.display = "";
-      }
+      const getStartedText =
+        authBtn?.getAttribute("data-get-started-text") || "Get Started";
+      if (authBtnText) authBtnText.textContent = getStartedText;
+      if (authBtnMobileText) authBtnMobileText.textContent = getStartedText;
+      if (authBtnIcon)
+        authBtnIcon.setAttribute("name", "heroicons:arrow-right");
+      if (authBtnMobileIcon)
+        authBtnMobileIcon.setAttribute("name", "heroicons:arrow-right");
+
       if (internalNavLink) {
         internalNavLink.classList.add("hidden");
       }
@@ -200,6 +256,9 @@ const currentPathWithoutLang = getPathWithoutLang(currentPath);
       }
     }
   }
+
+  // Initialize functions
+  setupAuthButton();
 
   // Update navigation on initial load
   updateNavigation();

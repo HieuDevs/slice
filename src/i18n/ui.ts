@@ -17,6 +17,7 @@ export const ui = {
     'nav.about': 'About Us',
     'nav.faq': 'FAQ',
     'nav.getStarted': 'Get Started',
+    'nav.logout': 'Logout',
 
     // Internal page
     'internal.welcome': 'Welcome back, {username}!',
@@ -61,7 +62,7 @@ export const ui = {
     'workshop.edit': 'Edit',
     'workshop.delete': 'Delete',
     'workshop.your_proposals': 'Your Proposals',
-    'workshop.all_proposals': 'All Proposals (Admin View)',
+    'workshop.all_proposals': 'All Proposals',
     'workshop.cancel': 'Cancel',
     'workshop.delete_confirm': 'Are you sure you want to delete this proposal?',
     'workshop.no_proposals': 'No proposals yet. Be the first to suggest a name!',
@@ -216,6 +217,7 @@ export const ui = {
     'nav.about': 'Về chúng tôi',
     'nav.faq': 'Câu hỏi thường gặp',
     'nav.getStarted': 'Bắt đầu',
+    'nav.logout': 'Đăng xuất',
 
     // Internal page
     'internal.welcome': 'Chào mừng trở lại, {username}!',
@@ -260,7 +262,7 @@ export const ui = {
     'workshop.edit': 'Sửa',
     'workshop.delete': 'Xóa',
     'workshop.your_proposals': 'Đề xuất của bạn',
-    'workshop.all_proposals': 'Tất cả đề xuất (Admin)',
+    'workshop.all_proposals': 'Tất cả đề xuất',
     'workshop.cancel': 'Hủy',
     'workshop.delete_confirm': 'Bạn có chắc muốn xóa đề xuất này?',
     'workshop.no_proposals': 'Chưa có đề xuất nào. Hãy là người đầu tiên!',
