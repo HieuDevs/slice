@@ -1,8 +1,9 @@
 ---
 import Navigation from "../components/Navigation.astro";
 import Footer from "../components/Footer.astro";
+import { ViewTransitions } from "astro:transitions";
 import "../styles/global.css";
-import { defaultLang, type Language } from "../i18n";
+import { defaultLang, type Language } from "@/i18n";
 
 interface Props {
   title?: string;
@@ -27,6 +28,7 @@ const {
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <ViewTransitions />
     <title>{title}</title>
     <script is:inline>
       const getThemePreference = () => {
@@ -40,12 +42,22 @@ const {
           ? "dark"
           : "light";
       };
-      const theme = getThemePreference();
-      if (theme === "dark") {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
+
+      const applyTheme = () => {
+        const theme = getThemePreference();
+        if (theme === "dark") {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+      };
+
+      // Apply theme immediately
+      applyTheme();
+
+      // Restore theme after view transitions
+      document.addEventListener("astro:page-load", applyTheme);
+      document.addEventListener("astro:after-swap", applyTheme);
     </script>
   </head>
   <body

@@ -1,5 +1,5 @@
 ---
-
+import { Icon } from "astro-icon/components";
 ---
 
 <button
@@ -8,62 +8,81 @@
   class="relative w-10 h-10 rounded-xl bg-cream-200 dark:bg-dark-700 hover:bg-cream-300 dark:hover:bg-dark-600 transition-all duration-300 flex items-center justify-center group"
   aria-label="Toggle dark mode"
 >
-  <svg
+  <Icon
     id="sun-icon"
+    name="heroicons:sun"
     class="w-5 h-5 text-slice-500 transition-all duration-300 absolute opacity-100 dark:opacity-0 dark:rotate-90 rotate-0"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
-    <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-    ></path>
-  </svg>
-  <svg
+  />
+  <Icon
     id="moon-icon"
+    name="heroicons:moon"
     class="w-5 h-5 text-slice-400 transition-all duration-300 absolute opacity-0 dark:opacity-100 -rotate-90 dark:rotate-0"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
-    <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-    ></path>
-  </svg>
+  />
 </button>
 
 <script>
-  const themeToggle = document.getElementById("theme-toggle");
+  function initThemeToggle() {
+    const themeToggle = document.getElementById("theme-toggle");
+    if (!themeToggle) return;
 
-  function setTheme(theme: "dark" | "light") {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-    localStorage.setItem("theme", theme);
-  }
+    // Remove existing listeners by cloning the button
+    const newToggle = themeToggle.cloneNode(true);
+    themeToggle.parentNode?.replaceChild(newToggle, themeToggle);
 
-  themeToggle?.addEventListener("click", () => {
-    const currentTheme = document.documentElement.classList.contains("dark")
-      ? "dark"
-      : "light";
-    const newTheme = currentTheme === "dark" ? "light" : "dark";
-    setTheme(newTheme);
-  });
+    newToggle.addEventListener("click", () => {
+      const currentTheme = document.documentElement.classList.contains("dark")
+        ? "dark"
+        : "light";
+      const newTheme = currentTheme === "dark" ? "light" : "dark";
 
-  // Listen for system theme changes
-  window
-    .matchMedia("(prefers-color-scheme: dark)")
-    .addEventListener("change", (e) => {
-      if (!localStorage.getItem("theme")) {
-        setTheme(e.matches ? "dark" : "light");
+      // Function to set theme
+      // @ts-ignore
+      const setTheme = (theme) => {
+        if (theme === "dark") {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+        localStorage.setItem("theme", theme);
+      };
+
+      // Use View Transitions API if available for smooth theme transition
+      if (typeof document.startViewTransition === "function") {
+        document.startViewTransition(() => {
+          setTheme(newTheme);
+        });
+      } else {
+        setTheme(newTheme);
       }
     });
+  }
+
+  // Function to restore theme from localStorage
+  function restoreTheme() {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      if (savedTheme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    }
+  }
+
+  // Initialize on DOM ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+      restoreTheme();
+      initThemeToggle();
+    });
+  } else {
+    restoreTheme();
+    initThemeToggle();
+  }
+
+  // Re-initialize and restore theme after view transitions
+  document.addEventListener("astro:page-load", () => {
+    restoreTheme();
+    initThemeToggle();
+  });
 </script>

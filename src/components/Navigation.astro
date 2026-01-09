@@ -1,13 +1,16 @@
 ---
 import LanguageSwitcher from "./LanguageSwitcher.astro";
 import ThemeToggle from "./ThemeToggle.astro";
+import { Icon } from "astro-icon/components";
 import {
   defaultLang,
   useTranslations,
   getLocalizedPath,
   getPathWithoutLang,
   type Language,
-} from "../i18n";
+} from "@/i18n";
+import { getNavLinks } from "@/routes";
+import { PATH_MAP } from "@/routes/route";
 
 interface Props {
   currentPath?: string;
@@ -17,26 +20,17 @@ interface Props {
 const { currentPath = "/", lang = defaultLang } = Astro.props;
 const t = useTranslations(lang);
 
-const navLinks = [
-  { href: getLocalizedPath("/", lang), label: t("nav.home"), path: "/" },
-  {
-    href: getLocalizedPath("/blogs", lang),
-    label: t("nav.blogs"),
-    path: "/blogs",
-  },
-  {
-    href: getLocalizedPath("/about", lang),
-    label: t("nav.about"),
-    path: "/about",
-  },
-  { href: getLocalizedPath("/faq", lang), label: t("nav.faq"), path: "/faq" },
-];
+const navLinks = getNavLinks(lang).map((link) => ({
+  ...link,
+  label: t(link.labelKey as any),
+}));
 
 const currentPathWithoutLang = getPathWithoutLang(currentPath);
 ---
 
 <nav
   class="fixed top-0 left-0 right-0 z-50 bg-cream-50/80 dark:bg-dark-900/80 backdrop-blur-lg border-b border-cream-300/50 dark:border-dark-700/50 transition-colors duration-300"
+  style="view-transition-name: navigation;"
 >
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-20">
@@ -47,26 +41,7 @@ const currentPathWithoutLang = getPathWithoutLang(currentPath);
         <div
           class="w-10 h-10 bg-linear-to-br from-slice-400 to-slice-600 rounded-xl flex items-center justify-center shadow-glow group-hover:scale-110 transition-transform duration-300"
         >
-          <svg
-            class="w-6 h-6 text-white"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-          >
-            <path
-              d="M12 2L2 7l10 5 10-5-10-5z"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-            <path
-              d="M2 17l10 5 10-5"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-            <path
-              d="M2 12l10 5 10-5"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-          </svg>
+          <Icon name="heroicons:cube" class="w-6 h-6 text-white" />
         </div>
         <span
           class="font-display text-2xl font-bold text-dark-900 dark:text-cream-100"
@@ -90,25 +65,28 @@ const currentPathWithoutLang = getPathWithoutLang(currentPath);
             </a>
           ))
         }
+        <a
+          id="internal-nav-link"
+          href={getLocalizedPath("/internal", lang)}
+          class:list={[
+            "nav-link font-medium py-2 hidden",
+            currentPathWithoutLang === "/internal" && "nav-link-active",
+          ]}
+        >
+          {t("internal.title")}
+        </a>
       </div>
 
       <div class="hidden md:flex items-center gap-4">
         <ThemeToggle />
         <LanguageSwitcher />
-        <a href="/contact" class="btn-primary">
+        <a
+          id="get-started-btn"
+          href={getLocalizedPath(PATH_MAP.LOGIN, lang)}
+          class="btn-primary"
+        >
           {t("nav.getStarted")}
-          <svg
-            class="w-4 h-4 ml-2"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-          </svg>
+          <Icon name="heroicons:arrow-right" class="w-4 h-4 ml-2" />
         </a>
       </div>
 
@@ -116,19 +94,10 @@ const currentPathWithoutLang = getPathWithoutLang(currentPath);
         id="mobile-menu-btn"
         class="md:hidden p-2 rounded-lg hover:bg-cream-200 dark:hover:bg-dark-700 transition-colors"
       >
-        <svg
+        <Icon
+          name="heroicons:bars-3"
           class="w-6 h-6 text-dark-900 dark:text-cream-100"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            id="menu-icon"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
+        />
       </button>
     </div>
   </div>
@@ -154,11 +123,27 @@ const currentPathWithoutLang = getPathWithoutLang(currentPath);
           </a>
         ))
       }
+      <a
+        id="internal-nav-link-mobile"
+        href={getLocalizedPath("/internal", lang)}
+        class:list={[
+          "block px-4 py-3 rounded-xl font-medium transition-colors",
+          currentPathWithoutLang === "/internal"
+            ? "bg-slice-100 dark:bg-slice-900/30 text-slice-700 dark:text-slice-400"
+            : "text-dark-600 dark:text-dark-300 hover:bg-cream-200 dark:hover:bg-dark-800 hover:text-dark-900 dark:hover:text-cream-100",
+        ]}
+      >
+        {t("internal.title")}
+      </a>
       <div class="px-4 py-3 flex items-center gap-3">
         <ThemeToggle />
         <LanguageSwitcher />
       </div>
-      <a href="/contact" class="btn-primary w-full mt-4">
+      <a
+        id="get-started-btn-mobile"
+        href={getLocalizedPath("/login", lang)}
+        class="btn-primary w-full mt-4"
+      >
         {t("nav.getStarted")}
       </a>
     </div>
@@ -172,4 +157,54 @@ const currentPathWithoutLang = getPathWithoutLang(currentPath);
   mobileMenuBtn?.addEventListener("click", () => {
     mobileMenu?.classList.toggle("hidden");
   });
+
+  // Function to update navigation based on login status
+  function updateNavigation() {
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    const getStartedBtn = document.getElementById("get-started-btn");
+    const getStartedBtnMobile = document.getElementById(
+      "get-started-btn-mobile"
+    );
+    const internalNavLink = document.getElementById("internal-nav-link");
+    const internalNavLinkMobile = document.getElementById(
+      "internal-nav-link-mobile"
+    );
+
+    if (isLoggedIn === "true") {
+      // User is logged in - hide "Get Started" and show "Internal"
+      if (getStartedBtn) {
+        getStartedBtn.style.display = "none";
+      }
+      if (getStartedBtnMobile) {
+        getStartedBtnMobile.style.display = "none";
+      }
+      if (internalNavLink) {
+        internalNavLink.classList.remove("hidden");
+      }
+      if (internalNavLinkMobile) {
+        internalNavLinkMobile.classList.remove("hidden");
+      }
+    } else {
+      // User is not logged in - show "Get Started" and hide "Internal"
+      if (getStartedBtn) {
+        getStartedBtn.style.display = "";
+      }
+      if (getStartedBtnMobile) {
+        getStartedBtnMobile.style.display = "";
+      }
+      if (internalNavLink) {
+        internalNavLink.classList.add("hidden");
+      }
+      if (internalNavLinkMobile) {
+        internalNavLinkMobile.classList.add("hidden");
+      }
+    }
+  }
+
+  // Update navigation on initial load
+  updateNavigation();
+
+  // Update navigation after view transitions
+  document.addEventListener("astro:page-load", updateNavigation);
+  document.addEventListener("astro:after-swap", updateNavigation);
 </script>

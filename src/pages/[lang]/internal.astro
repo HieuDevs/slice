@@ -1,0 +1,274 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+import {
+  languages,
+  useTranslations,
+  getLocalizedPath,
+  type Language,
+} from "@/i18n";
+
+export const prerender = false;
+
+const { lang } = Astro.params as { lang: Language };
+const t = useTranslations(lang);
+
+// Get user from middleware context
+const user = Astro.locals.user;
+---
+
+<Layout
+  title={`${t("internal.title")} - Slice`}
+  currentPath={getLocalizedPath("/internal", lang)}
+  lang={lang}
+>
+  <section
+    class="min-h-screen py-24 bg-linear-to-br from-cream-50 to-cream-100 dark:from-dark-950 dark:to-dark-900"
+  >
+    <div class="max-w-6xl mx-auto px-4">
+      <!-- Header with Logout -->
+      <div
+        class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-12 opacity-0 animate-fade-in"
+        style="animation-delay: 100ms"
+      >
+        <div>
+          <h1
+            id="welcome-message"
+            class="text-4xl md:text-5xl font-display font-bold text-dark-900 dark:text-cream-100 mb-2"
+          >
+            {
+              user
+                ? t("internal.welcome").replace("{username}", user.username)
+                : t("internal.welcome").replace("{username}", "")
+            }
+          </h1>
+          <p class="text-lg text-dark-600 dark:text-dark-300">
+            {t("internal.subtitle")}
+          </p>
+        </div>
+        <button id="logout-btn" class="btn-secondary flex items-center gap-2">
+          <Icon name="heroicons:arrow-right-on-rectangle" class="w-5 h-5" />
+          {t("internal.logout")}
+        </button>
+      </div>
+
+      <!-- Resources Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Agile & Scrum Card -->
+        <a
+          href={getLocalizedPath("/agile-scrum", lang)}
+          class="card group hover:scale-105 transition-all duration-300 opacity-0 animate-fade-in cursor-pointer block"
+          style="animation-delay: 200ms"
+        >
+          <div class="relative overflow-hidden rounded-2xl p-8">
+            <!-- Icon -->
+            <div
+              class="w-16 h-16 bg-linear-to-br from-slice-400 to-slice-600 rounded-2xl flex items-center justify-center shadow-glow mb-6 group-hover:shadow-glow-lg transition-all duration-300"
+            >
+              <Icon name="heroicons:document-text" class="w-8 h-8 text-white" />
+            </div>
+
+            <!-- Content -->
+            <h3
+              class="text-2xl font-display font-bold text-dark-900 dark:text-cream-100 mb-3"
+            >
+              {t("internal.agile_scrum.title")}
+            </h3>
+            <p class="text-dark-600 dark:text-dark-300 mb-4">
+              {t("internal.agile_scrum.description")}
+            </p>
+
+            <!-- Arrow Icon -->
+            <div
+              class="flex items-center text-slice-600 dark:text-slice-400 font-semibold group-hover:translate-x-2 transition-transform duration-300"
+            >
+              <span class="mr-2">Xem ngay</span>
+              <Icon name="heroicons:arrow-right" class="w-5 h-5" />
+            </div>
+
+            <!-- Decorative gradient -->
+            <div
+              class="absolute top-0 right-0 w-32 h-32 bg-linear-to-br from-slice-400/20 to-transparent rounded-full blur-2xl -z-10 group-hover:w-40 group-hover:h-40 transition-all duration-300"
+            >
+            </div>
+          </div>
+        </a>
+
+        <!-- App Naming Workshop Card -->
+        <a
+          href={getLocalizedPath("/app-naming-workshop", lang)}
+          class="card group hover:scale-105 transition-all duration-300 opacity-0 animate-fade-in cursor-pointer block"
+          style="animation-delay: 300ms"
+        >
+          <div class="relative overflow-hidden rounded-2xl p-8">
+            <!-- Icon -->
+            <div
+              class="w-16 h-16 bg-linear-to-br from-purple-400 to-purple-600 rounded-2xl flex items-center justify-center shadow-glow mb-6 group-hover:shadow-glow-lg transition-all duration-300"
+            >
+              <Icon name="heroicons:pencil-square" class="w-8 h-8 text-white" />
+            </div>
+
+            <!-- Content -->
+            <h3
+              class="text-2xl font-display font-bold text-dark-900 dark:text-cream-100 mb-3"
+            >
+              {t("internal.app_naming.title")}
+            </h3>
+            <p class="text-dark-600 dark:text-dark-300 mb-4">
+              {t("internal.app_naming.description")}
+            </p>
+
+            <!-- Arrow Icon -->
+            <div
+              class="flex items-center text-slice-600 dark:text-slice-400 font-semibold group-hover:translate-x-2 transition-transform duration-300"
+            >
+              <span class="mr-2">Xem ngay</span>
+              <Icon name="heroicons:arrow-right" class="w-5 h-5" />
+            </div>
+
+            <!-- Decorative gradient -->
+            <div
+              class="absolute top-0 right-0 w-32 h-32 bg-linear-to-br from-purple-400/20 to-transparent rounded-full blur-2xl -z-10 group-hover:w-40 group-hover:h-40 transition-all duration-300"
+            >
+            </div>
+          </div>
+        </a>
+
+        <!-- User Management Card (Admin only, will be shown/hidden by JS) -->
+        <a
+          id="user-management-card"
+          href={getLocalizedPath("/users", lang)}
+          class="card group hover:scale-105 transition-all duration-300 opacity-0 animate-fade-in cursor-pointer block"
+          style="animation-delay: 400ms"
+        >
+          <div class="relative overflow-hidden rounded-2xl p-8">
+            <!-- Icon -->
+            <div
+              class="w-16 h-16 bg-linear-to-br from-green-400 to-green-600 rounded-2xl flex items-center justify-center shadow-glow mb-6 group-hover:shadow-glow-lg transition-all duration-300"
+            >
+              <Icon name="heroicons:users" class="w-8 h-8 text-white" />
+            </div>
+
+            <!-- Content -->
+            <h3
+              class="text-2xl font-display font-bold text-dark-900 dark:text-cream-100 mb-3"
+            >
+              {t("internal.user_management.title")}
+            </h3>
+            <p class="text-dark-600 dark:text-dark-300 mb-4">
+              {t("internal.user_management.description")}
+            </p>
+
+            <!-- Arrow Icon -->
+            <div
+              class="flex items-center text-slice-600 dark:text-slice-400 font-semibold group-hover:translate-x-2 transition-transform duration-300"
+            >
+              <span class="mr-2">Xem ngay</span>
+              <Icon name="heroicons:arrow-right" class="w-5 h-5" />
+            </div>
+
+            <!-- Decorative gradient -->
+            <div
+              class="absolute top-0 right-0 w-32 h-32 bg-linear-to-br from-green-400/20 to-transparent rounded-full blur-2xl -z-10 group-hover:w-40 group-hover:h-40 transition-all duration-300"
+            >
+            </div>
+          </div>
+        </a>
+
+        <div
+          class="card group opacity-0 animate-fade-in relative overflow-hidden"
+          style="animation-delay: 500ms"
+        >
+          <div class="p-8">
+            <div
+              class="w-16 h-16 bg-linear-to-br from-dark-200 to-dark-300 dark:from-dark-700 dark:to-dark-800 rounded-2xl flex items-center justify-center mb-6"
+            >
+              <Icon name="heroicons:plus" class="w-8 h-8 text-dark-400" />
+            </div>
+            <h3
+              class="text-2xl font-display font-bold text-dark-400 dark:text-dark-500 mb-3"
+            >
+              More Resources Coming Soon
+            </h3>
+            <p class="text-dark-400 dark:text-dark-600">
+              We're working on adding more team resources and documentation.
+            </p>
+          </div>
+          <div
+            class="absolute inset-0 bg-linear-to-br from-transparent to-dark-50/50 dark:to-dark-900/50"
+          >
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script is:inline define:vars={{ lang, user }}>
+  // Function to setup logout button
+  function setupLogoutButton() {
+    const logoutBtn = document.getElementById("logout-btn");
+    logoutBtn?.addEventListener("click", () => {
+      // Clear all user-related authentication data
+      localStorage.removeItem("token");
+      localStorage.removeItem("isLoggedIn");
+      localStorage.removeItem("username");
+
+      // Clear authentication cookie
+      document.cookie =
+        "token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax";
+
+      // Redirect to home page
+      window.location.href = `/${lang}`;
+    });
+  }
+
+  // Function to check admin status and show user management card
+  function checkAdminStatus() {
+    // Check if user is admin using server-side user data
+    const userManagementCard = document.getElementById("user-management-card");
+
+    if (user && user.role === "admin" && userManagementCard) {
+      userManagementCard.classList.remove("hidden");
+    }
+  }
+
+  // Initialize on page load
+  function initializePage() {
+    updateWelcomeMessage();
+    setupLogoutButton();
+    checkAdminStatus();
+  }
+
+  // Run on initial load
+  initializePage();
+
+  // Run again after view transitions (when navigating back to this page)
+  document.addEventListener("astro:page-load", initializePage);
+  document.addEventListener("astro:after-swap", initializePage);
+</script>
+
+<style>
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .shadow-glow {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+  }
+
+  .shadow-glow-lg {
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
+  }
+</style>

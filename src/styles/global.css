@@ -45,7 +45,7 @@
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-slice-500 via-slice-400 to-slice-600 bg-clip-text text-transparent;
+    @apply bg-linear-to-r from-slice-500 via-slice-400 to-slice-600 bg-clip-text text-transparent;
   }
 
   .nav-link {
@@ -87,4 +87,47 @@
   .animation-delay-600 {
     animation-delay: 600ms;
   }
+}
+
+/* View Transitions - Smooth page transitions */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.25s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::view-transition-old(root) {
+  animation-name: fade-out;
+}
+
+::view-transition-new(root) {
+  animation-name: fade-in;
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Keep navigation persistent across transitions */
+nav {
+  view-transition-name: navigation;
+}
+
+/* Smooth transitions for main content */
+main {
+  view-transition-name: main-content;
 }

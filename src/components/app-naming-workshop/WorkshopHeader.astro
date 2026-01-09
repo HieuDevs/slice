@@ -1,0 +1,40 @@
+---
+import { Icon } from "astro-icon/components";
+import { getLocalizedPath, type Language } from "@/i18n";
+
+interface Props {
+  lang: Language;
+  backPath: string;
+  title: string;
+  description: string;
+}
+
+const { lang, backPath, title, description } = Astro.props;
+---
+
+<div class="mb-12 opacity-0 animate-fade-in" style="animation-delay: 100ms">
+  <div class="flex items-center gap-3 mb-4">
+    <a
+      href={getLocalizedPath(backPath, lang)}
+      class="inline-flex items-center gap-2 text-slice-600 dark:text-slice-400 hover:text-slice-700 dark:hover:text-slice-300 transition-colors group"
+    >
+      <Icon
+        name="heroicons:chevron-left"
+        class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform"
+      />
+      <span class="font-medium">{title}</span>
+    </a>
+  </div>
+  <div class="max-w-3xl">
+    <h1
+      class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-dark-900 dark:text-cream-100 mb-4 leading-tight"
+    >
+      <slot />
+    </h1>
+    <p
+      class="text-lg md:text-xl text-dark-600 dark:text-dark-300 leading-relaxed"
+    >
+      {description}
+    </p>
+  </div>
+</div>

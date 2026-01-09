@@ -1,10 +1,11 @@
 ---
+import { Icon } from "astro-icon/components";
 import {
   languages,
   getLangFromUrl,
   getAlternateLanguageUrl,
   type Language,
-} from "../i18n";
+} from "@/i18n";
 
 const currentLang = getLangFromUrl(Astro.url);
 ---
@@ -13,34 +14,13 @@ const currentLang = getLangFromUrl(Astro.url);
   <summary
     class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-cream-200 dark:hover:bg-dark-700 transition-colors text-dark-600 dark:text-dark-300 cursor-pointer list-none"
   >
-    <svg
-      class="w-5 h-5"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
-      ></path>
-    </svg>
+    <Icon name="heroicons:globe-alt" class="w-5 h-5" aria-hidden="true" />
     <span class="text-sm font-medium uppercase">{currentLang}</span>
-    <svg
+    <Icon
+      name="heroicons:chevron-down"
       class="w-4 h-4 transition-transform group-open:rotate-180"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
       aria-hidden="true"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M19 9l-7 7-7-7"></path>
-    </svg>
+    />
   </summary>
 
   <div
@@ -63,20 +43,11 @@ const currentLang = getLangFromUrl(Astro.url);
           </span>
           <span>{label}</span>
           {currentLang === lang && (
-            <svg
+            <Icon
+              name="heroicons:check"
               class="w-4 h-4 ml-auto text-slice-500"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
               aria-hidden="true"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M5 13l4 4L19 7"
-              />
-            </svg>
+            />
           )}
         </a>
       ))

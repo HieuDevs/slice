@@ -1,0 +1,478 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+import {
+  languages,
+  useTranslations,
+  getLocalizedPath,
+  type Language,
+} from "@/i18n";
+
+export const prerender = false;
+
+const { lang } = Astro.params as { lang: Language };
+const t = useTranslations(lang);
+---
+
+<Layout
+  title={`${t("users.title")} - Slice`}
+  currentPath={getLocalizedPath("/users", lang)}
+  lang={lang}
+>
+  <section
+    class="min-h-screen py-12 md:py-20 bg-linear-to-br from-cream-50 via-white to-cream-100 dark:from-dark-950 dark:via-dark-900 dark:to-dark-950 relative overflow-hidden"
+  >
+    <!-- Background decoration -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div
+        class="absolute top-0 right-0 w-96 h-96 bg-slice-200/20 dark:bg-slice-900/10 rounded-full blur-3xl"
+      >
+      </div>
+      <div
+        class="absolute bottom-0 left-0 w-96 h-96 bg-slice-300/20 dark:bg-slice-800/10 rounded-full blur-3xl"
+      >
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <!-- Header -->
+      <div
+        class="mb-12 opacity-0 animate-fade-in"
+        style="animation-delay: 100ms"
+      >
+        <div class="flex items-center gap-3 mb-4">
+          <a
+            href={getLocalizedPath("/internal", lang)}
+            class="inline-flex items-center gap-2 text-slice-600 dark:text-slice-400 hover:text-slice-700 dark:hover:text-slice-300 transition-colors group"
+          >
+            <Icon
+              name="heroicons:chevron-left"
+              class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform"
+            />
+            <span class="font-medium">{t("internal.title")}</span>
+          </a>
+        </div>
+        <div class="max-w-3xl">
+          <h1
+            class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-dark-900 dark:text-cream-100 mb-4 leading-tight"
+          >
+            {t("users.title")}
+          </h1>
+          <p
+            class="text-lg md:text-xl text-dark-600 dark:text-dark-300 leading-relaxed"
+          >
+            {t("internal.user_management.description")}
+          </p>
+        </div>
+      </div>
+
+      <div class="grid lg:grid-cols-12 gap-6 lg:gap-8">
+        <!-- Create User Form -->
+        <div
+          class="lg:col-span-4 opacity-0 animate-fade-in"
+          style="animation-delay: 200ms"
+        >
+          <div
+            class="card p-6 lg:p-8 sticky top-6 border border-cream-200 dark:border-dark-700/50 bg-white/80 dark:bg-dark-800/80 backdrop-blur-sm"
+          >
+            <div class="flex items-center gap-3 mb-6">
+              <div
+                class="w-10 h-10 rounded-xl bg-slice-100 dark:bg-slice-900/30 flex items-center justify-center"
+              >
+                <Icon
+                  name="heroicons:user-plus"
+                  class="w-5 h-5 text-slice-600 dark:text-slice-400"
+                />
+              </div>
+              <h2
+                class="text-xl md:text-2xl font-display font-bold text-dark-900 dark:text-cream-100"
+              >
+                {t("users.create_user")}
+              </h2>
+            </div>
+
+            <!-- Success Message -->
+            <div
+              id="success-message"
+              class="hidden mb-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl"
+            >
+              <p class="text-green-600 dark:text-green-400 text-sm">
+                {t("users.success")}
+              </p>
+            </div>
+
+            <!-- Error Message -->
+            <div
+              id="error-message"
+              class="hidden mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl"
+            >
+              <p id="error-text" class="text-red-600 dark:text-red-400 text-sm">
+              </p>
+            </div>
+
+            <form id="create-user-form" class="space-y-5">
+              <div>
+                <label
+                  for="username"
+                  class="block text-sm font-semibold text-dark-700 dark:text-dark-200 mb-2"
+                >
+                  {t("users.username")}
+                </label>
+                <div class="relative">
+                  <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    required
+                    class="w-full px-4 py-3 pr-24 rounded-xl border-2 border-cream-300 dark:border-dark-700 bg-white dark:bg-dark-900 text-dark-900 dark:text-cream-100 focus:outline-none focus:ring-2 focus:ring-slice-500 dark:focus:ring-slice-400 focus:border-slice-500 dark:focus:border-slice-400 transition-all placeholder:text-dark-400 dark:placeholder:text-dark-500"
+                    placeholder={t("users.username")}
+                  />
+                  <div
+                    class="absolute right-4 top-1/2 transform -translate-y-1/2 text-dark-500 dark:text-dark-400 font-medium pointer-events-none"
+                  >
+                    @slice.com
+                  </div>
+                </div>
+                <p class="mt-1 text-xs text-dark-500 dark:text-dark-400">
+                  {t("users.username_hint")}
+                </p>
+              </div>
+              <div>
+                <label
+                  for="password"
+                  class="block text-sm font-semibold text-dark-700 dark:text-dark-200 mb-2"
+                >
+                  {t("users.password")}
+                </label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  required
+                  class="w-full px-4 py-3 rounded-xl border-2 border-cream-300 dark:border-dark-700 bg-white dark:bg-dark-900 text-dark-900 dark:text-cream-100 focus:outline-none focus:ring-2 focus:ring-slice-500 dark:focus:ring-slice-400 focus:border-slice-500 dark:focus:border-slice-400 transition-all placeholder:text-dark-400 dark:placeholder:text-dark-500"
+                  placeholder={t("users.password")}
+                />
+              </div>
+              <div>
+                <label
+                  for="role"
+                  class="block text-sm font-semibold text-dark-700 dark:text-dark-200 mb-2"
+                >
+                  {t("users.role")}
+                </label>
+                <select
+                  id="role"
+                  name="role"
+                  class="w-full px-4 py-3 rounded-xl border-2 border-cream-300 dark:border-dark-700 bg-white dark:bg-dark-900 text-dark-900 dark:text-cream-100 focus:outline-none focus:ring-2 focus:ring-slice-500 dark:focus:ring-slice-400 focus:border-slice-500 dark:focus:border-slice-400 transition-all"
+                >
+                  <option value="user">{t("users.role_user")}</option>
+                  <option value="admin">{t("users.role_admin")}</option>
+                </select>
+              </div>
+              <div class="flex gap-3 pt-2">
+                <button
+                  type="submit"
+                  id="submit-btn"
+                  class="flex-1 btn-primary justify-center"
+                >
+                  {t("users.create")}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Users List -->
+        <div
+          class="lg:col-span-8 opacity-0 animate-fade-in"
+          style="animation-delay: 300ms"
+        >
+          <div class="mb-6">
+            <h2
+              class="text-2xl md:text-3xl font-display font-bold text-dark-900 dark:text-cream-100"
+            >
+              {t("users.list")}
+            </h2>
+          </div>
+
+          <div id="users-list" class="space-y-4">
+            <div class="text-center py-8 text-dark-500 dark:text-dark-400">
+              {t("users.loading")}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script
+  is:inline
+  define:vars={{
+    lang,
+    translations: {
+      success: t("users.success"),
+      error: t("users.error"),
+      usernameExists: t("users.username_exists"),
+      required: t("users.required"),
+      forbidden: t("users.forbidden"),
+      loading: t("users.loading"),
+      noUsers: t("users.no_users"),
+      usernameMustEndWithSlice: t("users.username_hint"),
+      create: t("users.create"),
+      creating: "Creating...",
+      deleteUser: t("users.delete"),
+      confirmDelete: t("users.confirm_delete"),
+      roleAdmin: t("users.role_admin"),
+      roleUser: t("users.role_user"),
+    },
+  }}
+>
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    const loginPath = `/${lang}/login`;
+    window.location.href = loginPath;
+  } else {
+    const form = document.getElementById("create-user-form");
+    const submitBtn = document.getElementById("submit-btn");
+    const successMessage = document.getElementById("success-message");
+    const errorMessage = document.getElementById("error-message");
+    const errorText = document.getElementById("error-text");
+    const usersList = document.getElementById("users-list");
+
+    // Helper function to get auth headers
+    function getAuthHeaders() {
+      return {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      };
+    }
+
+    // Load users list
+    async function loadUsers() {
+      try {
+        const response = await fetch("/api/users", {
+          headers: getAuthHeaders(),
+        });
+
+        if (response.status === 403) {
+          window.location.href = `/${lang}/internal`;
+          return;
+        }
+
+        if (!response.ok) {
+          throw new Error("Failed to load users");
+        }
+
+        const data = await response.json();
+        const users = data.users || [];
+        const isAdmin = data.isAdmin || false;
+
+        if (users.length === 0) {
+          usersList.innerHTML = `
+            <div class="card p-12 text-center border-2 border-dashed border-cream-300 dark:border-dark-700 bg-cream-50/50 dark:bg-dark-800/30">
+              <p class="text-lg font-medium text-dark-600 dark:text-dark-400">${translations.noUsers}</p>
+            </div>
+          `;
+          return;
+        }
+
+        usersList.innerHTML = users
+          .map(
+            (user) => `
+            <div class="card p-6 border border-cream-200 dark:border-dark-700/50 bg-white/80 dark:bg-dark-800/80 backdrop-blur-sm">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                  <div class="w-12 h-12 rounded-xl bg-slice-100 dark:bg-slice-900/30 flex items-center justify-center">
+                    <svg class="w-6 h-6 text-slice-600 dark:text-slice-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-dark-900 dark:text-cream-100">${user.username}</h3>
+                    <p class="text-sm text-dark-500 dark:text-dark-400">
+                      ${user.role === "admin" ? translations.roleAdmin : translations.roleUser}
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="text-xs text-dark-400 dark:text-dark-500">
+                    ${new Date(user.created_at).toLocaleString(lang === "vi" ? "vi-VN" : "en-US", { dateStyle: "medium" })}
+                  </div>
+                  ${
+                    isAdmin
+                      ? `<button onclick="deleteUser(${user.id}, '${user.username}')" class="p-2 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 transition-colors" title="${translations.deleteUser}">
+                          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                          </svg>
+                        </button>`
+                      : ""
+                  }
+                </div>
+              </div>
+            </div>
+          `
+          )
+          .join("");
+      } catch (error) {
+        console.error("Error loading users:", error);
+        usersList.innerHTML = `
+          <div class="card p-8 text-center border-2 border-red-200 dark:border-red-800 bg-red-50/50 dark:bg-red-900/20">
+            <p class="text-red-600 dark:text-red-400">${translations.error}</p>
+          </div>
+        `;
+      }
+    }
+
+    // Delete user (admin only)
+    window.deleteUser = async (userId, username) => {
+      if (!confirm(`${translations.confirmDelete} ${username}?`)) {
+        return;
+      }
+
+      try {
+        const response = await fetch(`/api/users?id=${userId}`, {
+          method: "DELETE",
+          headers: getAuthHeaders(),
+        });
+
+        if (response.ok) {
+          // Reload users list
+          loadUsers();
+          // Show success message
+          successMessage.classList.remove("hidden");
+          setTimeout(() => {
+            successMessage.classList.add("hidden");
+          }, 3000);
+        } else {
+          const data = await response.json();
+          errorText.textContent = data.error || translations.error;
+          errorMessage.classList.remove("hidden");
+          setTimeout(() => {
+            errorMessage.classList.add("hidden");
+          }, 5000);
+        }
+      } catch (error) {
+        console.error("Error deleting user:", error);
+        errorText.textContent = translations.error;
+        errorMessage.classList.remove("hidden");
+        setTimeout(() => {
+          errorMessage.classList.add("hidden");
+        }, 5000);
+      }
+    };
+
+    // Handle username input - auto-append @slice.com
+    const usernameInput = document.getElementById("username");
+    usernameInput?.addEventListener("input", (e) => {
+      const value = e.target.value;
+      // Remove @slice.com if it exists at the end to avoid duplication
+      if (value.endsWith("@slice.com")) {
+        e.target.value = value.slice(0, -10);
+      }
+    });
+
+    // Handle form submit
+    form?.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const passwordInput = document.getElementById("password");
+      const roleSelect = document.getElementById("role");
+
+      // Get username and auto-append @slice.com
+      const usernameBase = usernameInput?.value || "";
+      const newUsername = usernameBase + "@slice.com";
+      const password = passwordInput?.value || "";
+      const role = roleSelect?.value || "user";
+
+      if (!newUsername || !password) {
+        errorText.textContent = translations.required;
+        errorMessage.classList.remove("hidden");
+        setTimeout(() => {
+          errorMessage.classList.add("hidden");
+        }, 3000);
+        return;
+      }
+
+      if (!newUsername.endsWith("@slice.com")) {
+        errorText.textContent = translations.usernameMustEndWithSlice;
+        errorMessage.classList.remove("hidden");
+        setTimeout(() => {
+          errorMessage.classList.add("hidden");
+        }, 3000);
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = translations.creating;
+
+      try {
+        const response = await fetch("/api/users", {
+          method: "POST",
+          headers: getAuthHeaders(),
+          body: JSON.stringify({
+            username: newUsername,
+            password,
+            role,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          // Success
+          successMessage.classList.remove("hidden");
+          form.reset();
+          loadUsers();
+
+          setTimeout(() => {
+            successMessage.classList.add("hidden");
+          }, 3000);
+        } else {
+          // Error
+          const errorMessageText = data.error || translations.error;
+          errorText.textContent = errorMessageText.includes("@slice.com")
+            ? translations.usernameMustEndWithSlice
+            : errorMessageText;
+          errorMessage.classList.remove("hidden");
+
+          setTimeout(() => {
+            errorMessage.classList.add("hidden");
+          }, 3000);
+        }
+      } catch (error) {
+        console.error("Error creating user:", error);
+        errorText.textContent = translations.error;
+        errorMessage.classList.remove("hidden");
+
+        setTimeout(() => {
+          errorMessage.classList.add("hidden");
+        }, 3000);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = translations.create;
+      }
+    });
+
+    // Initial load
+    loadUsers();
+  }
+</script>
+
+<style>
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

@@ -1,0 +1,268 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import WorkshopHeader from "../../components/app-naming-workshop/WorkshopHeader.astro";
+import WorkshopForm from "../../components/app-naming-workshop/WorkshopForm.astro";
+import WorkshopProposalsList from "../../components/app-naming-workshop/WorkshopProposalsList.astro";
+import {
+  languages,
+  useTranslations,
+  getLocalizedPath,
+  type Language,
+} from "@/i18n";
+
+export const prerender = false;
+
+const { lang } = Astro.params as { lang: Language };
+const t = useTranslations(lang);
+---
+
+<Layout
+  title={`${t("workshop.title")} - Slice`}
+  currentPath={getLocalizedPath("/app-naming-workshop", lang)}
+  lang={lang}
+>
+  <section
+    class="min-h-screen py-12 md:py-20 bg-linear-to-br from-cream-50 via-white to-cream-100 dark:from-dark-950 dark:via-dark-900 dark:to-dark-950 relative overflow-hidden"
+  >
+    <!-- Background decoration -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div
+        class="absolute top-0 right-0 w-96 h-96 bg-slice-200/20 dark:bg-slice-900/10 rounded-full blur-3xl"
+      >
+      </div>
+      <div
+        class="absolute bottom-0 left-0 w-96 h-96 bg-slice-300/20 dark:bg-slice-800/10 rounded-full blur-3xl"
+      >
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <WorkshopHeader
+        lang={lang}
+        backPath="/internal"
+        title={t("internal.title")}
+        description={t("internal.app_naming.description")}
+      >
+        {t("workshop.title")}
+      </WorkshopHeader>
+
+      <!-- Selected App Name Section -->
+      <div
+        id="selected-app-section"
+        class="mb-8 hidden opacity-0 animate-fade-in"
+        style="animation-delay: 150ms"
+      >
+        <!-- Will be populated by JavaScript -->
+      </div>
+
+      <div class="grid lg:grid-cols-12 gap-6 lg:gap-8">
+        <WorkshopForm
+          formTitle={t("workshop.add_proposal")}
+          appNameLabel={t("workshop.app_name")}
+          appNamePlaceholder={t("workshop.enter_app_name")}
+          descriptionLabel={t("workshop.description")}
+          descriptionPlaceholder={t("workshop.describe_proposal")}
+          saveLabel={t("workshop.save")}
+          cancelLabel={t("workshop.cancel")}
+          toggleLockTitle={t("workshop.toggle_lock")}
+        />
+
+        <WorkshopProposalsList loadingText={t("workshop.loading")} />
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  import { initWorkshop } from "../../scripts/workshop.js";
+  // Expose to global scope for inline script
+  // @ts-ignore
+  window.initWorkshop = initWorkshop;
+</script>
+
+<script
+  is:inline
+  define:vars={{
+    lang,
+    translations: {
+      save: t("workshop.save"),
+      edit: t("workshop.edit"),
+      delete: t("workshop.delete"),
+      confirmDelete: t("workshop.delete_confirm"),
+      yourProposals: t("workshop.all_proposals"),
+      noProposals: t("workshop.no_proposals"),
+      loading: t("workshop.loading"),
+      error: t("workshop.error"),
+      adding: t("workshop.adding"),
+      add: t("workshop.add"),
+      updating: t("workshop.updating"),
+      update: t("workshop.update"),
+      vote: t("workshop.vote"),
+      score: t("workshop.score"),
+      finalize: t("workshop.finalize"),
+      confirmFinalize: t("workshop.confirm_finalize"),
+      winner: t("workshop.winner"),
+      locked: t("workshop.locked"),
+      averageScore: t("workshop.average_score"),
+      allVoted: t("workshop.all_voted"),
+      proposals: t("workshop.proposals"),
+      votes: t("workshop.votes"),
+      noVotesYet: t("workshop.no_votes_yet"),
+      membersVoted: t("workshop.members_voted"),
+      avgScore: t("workshop.avg_score"),
+      cannotDeleteSelected: t("workshop.cannot_delete_selected"),
+      cannotEditSelected: t("workshop.cannot_edit_selected"),
+      onlyAdminToggle: t("workshop.only_admin_toggle"),
+      lockWorkshop: t("workshop.lock_workshop"),
+      unlockWorkshop: t("workshop.unlock_workshop"),
+      editProposal: t("workshop.edit_proposal"),
+    },
+  }}
+>
+  // Store config in global variable for workshop script
+  window.workshopConfig = {
+    lang: lang,
+    translations: translations,
+  };
+
+  // Get username from localStorage for workshop functionality
+  const username = localStorage.getItem("username");
+  if (username) {
+    window.workshopConfig.username = username;
+  }
+
+  // Global flag to prevent duplicate initialization
+  if (!window.workshopInitInProgress) {
+    window.workshopInitInProgress = false;
+  }
+
+  // Flag to prevent multiple initWorkshopPage calls
+  if (!window.workshopPageInitialized) {
+    window.workshopPageInitialized = false;
+  }
+
+  function initWorkshopPage() {
+    // Prevent multiple simultaneous calls to initWorkshopPage
+    if (window.workshopPageInitialized) {
+      console.log("Workshop page already initialized, skipping...");
+      return;
+    }
+
+    const container = document.getElementById("proposals-list");
+    if (!container) {
+      setTimeout(initWorkshopPage, 100);
+      return;
+    }
+
+    // Check if workshop script is loaded
+    if (typeof window.initWorkshop === "undefined") {
+      // Script not loaded yet, wait a bit
+      setTimeout(initWorkshopPage, 50);
+      return;
+    }
+
+    // Prevent duplicate initialization
+    if (window.workshopInitInProgress) {
+      console.log("Workshop initialization already in progress, skipping...");
+      return;
+    }
+
+    // Reset initialization flag when navigating
+    if (container.dataset.initialized === "true") {
+      container.dataset.initialized = "false";
+    }
+
+    container.dataset.initialized = "true";
+    window.workshopInitInProgress = true;
+    window.workshopPageInitialized = true;
+
+    // Call initWorkshop directly without setTimeout to avoid race conditions
+    try {
+      window.initWorkshop({
+        lang: window.workshopConfig.lang,
+        username: window.workshopConfig.username,
+        translations: window.workshopConfig.translations,
+      });
+      // Reset flag after successful initialization
+      window.workshopInitInProgress = false;
+    } catch (error) {
+      console.error("Error initializing workshop:", error);
+      container.dataset.initialized = "false";
+      window.workshopInitInProgress = false;
+      window.workshopPageInitialized = false; // Allow retry on error
+    }
+  }
+
+  // Initialize on page load - use a single approach
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+      if (!window.workshopPageInitialized) {
+        initWorkshopPage();
+      }
+    });
+  } else {
+    // Small delay to ensure all scripts are loaded
+    setTimeout(() => {
+      if (!window.workshopPageInitialized) {
+        initWorkshopPage();
+      }
+    }, 10);
+  }
+
+  // Reinitialize on Astro view transitions - simplified
+  document.addEventListener("astro:page-load", () => {
+    // Reset flags for new page load
+    window.workshopInitInProgress = false;
+    window.workshopPageInitialized = false;
+    setTimeout(() => {
+      initWorkshopPage();
+    }, 50);
+  });
+
+  document.addEventListener("astro:after-swap", () => {
+    // Reset flags for new page load
+    window.workshopInitInProgress = false;
+    window.workshopPageInitialized = false;
+    setTimeout(() => {
+      initWorkshopPage();
+    }, 50);
+  });
+</script>
+
+<style>
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .shadow-glow {
+    box-shadow:
+      0 0 30px rgba(238, 118, 32, 0.4),
+      0 0 60px rgba(238, 118, 32, 0.2);
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+  }
+</style>
