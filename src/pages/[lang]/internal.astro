@@ -128,12 +128,52 @@ const user = Astro.locals.user;
           </div>
         </a>
 
+        <!-- Tech Markdown Card -->
+        <a
+          href={getLocalizedPath("/tech-markdown", lang)}
+          class="card group hover:scale-105 transition-all duration-300 opacity-0 animate-fade-in cursor-pointer block"
+          style="animation-delay: 400ms"
+        >
+          <div class="relative overflow-hidden rounded-2xl p-8">
+            <!-- Icon -->
+            <div
+              class="w-16 h-16 bg-linear-to-br from-orange-400 to-orange-600 rounded-2xl flex items-center justify-center shadow-glow mb-6 group-hover:shadow-glow-lg transition-all duration-300"
+            >
+              <Icon name="heroicons:document-text" class="w-8 h-8 text-white" />
+            </div>
+
+            <!-- Content -->
+            <h3
+              class="text-2xl font-display font-bold text-dark-900 dark:text-cream-100 mb-3"
+            >
+              {t("internal.tech_markdown.title")}
+            </h3>
+            <p class="text-dark-600 dark:text-dark-300 mb-4">
+              {t("internal.tech_markdown.description")}
+            </p>
+
+            <!-- Arrow Icon -->
+            <div
+              class="flex items-center text-slice-600 dark:text-slice-400 font-semibold group-hover:translate-x-2 transition-transform duration-300"
+            >
+              <span class="mr-2">Xem ngay</span>
+              <Icon name="heroicons:arrow-right" class="w-5 h-5" />
+            </div>
+
+            <!-- Decorative gradient -->
+            <div
+              class="absolute top-0 right-0 w-32 h-32 bg-linear-to-br from-orange-400/20 to-transparent rounded-full blur-2xl -z-10 group-hover:w-40 group-hover:h-40 transition-all duration-300"
+            >
+            </div>
+          </div>
+        </a>
+
         <!-- User Management Card (Admin only, will be shown/hidden by JS) -->
         <a
           id="user-management-card"
           href={getLocalizedPath("/users", lang)}
           class="card group hover:scale-105 transition-all duration-300 opacity-0 animate-fade-in cursor-pointer block"
-          style="animation-delay: 400ms"
+          style="animation-delay: 500ms"
         >
           <div class="relative overflow-hidden rounded-2xl p-8">
             <!-- Icon -->
@@ -171,7 +211,7 @@ const user = Astro.locals.user;
 
         <div
           class="card group opacity-0 animate-fade-in relative overflow-hidden"
-          style="animation-delay: 500ms"
+          style="animation-delay: 600ms"
         >
           <div class="p-8">
             <div

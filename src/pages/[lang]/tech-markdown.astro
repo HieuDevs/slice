@@ -1,0 +1,104 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+import {
+  languages,
+  getLocalizedPath,
+  type Language,
+} from "@/i18n";
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => ({
+    params: { lang },
+  }));
+}
+
+const { lang } = Astro.params as { lang: Language };
+---
+
+<Layout
+  title="Tech Markdown - Slice"
+  currentPath={getLocalizedPath("/tech-markdown", lang)}
+  lang={lang}
+>
+  <section
+    class="min-h-screen py-24 bg-linear-to-br from-cream-50 to-cream-100 dark:from-dark-950 dark:to-dark-900"
+  >
+    <div class="max-w-6xl mx-auto px-4">
+      <!-- Header -->
+      <div
+        class="flex flex-col items-start gap-4 mb-12 opacity-0 animate-fade-in"
+        style="animation-delay: 100ms"
+      >
+        <h1
+          class="text-3xl md:text-4xl font-display font-bold text-dark-900 dark:text-cream-100 mb-2"
+        >
+          Tech Markdown
+        </h1>
+        <p class="text-base text-dark-600 dark:text-dark-300">
+          Technical documentation and markdown resources for the team
+        </p>
+      </div>
+
+      <!-- WebRTC Technical Guide Card (Full Width) -->
+      <a
+        href={getLocalizedPath("/webrtc-guide", lang)}
+        class="block w-full mb-16 opacity-0 animate-fade-in"
+        style="animation-delay: 200ms"
+      >
+        <div class="bg-white dark:bg-dark-800 rounded-3xl p-6 md:p-8 shadow-card hover:shadow-card-hover transition-all duration-300">
+          <div class="flex items-center gap-4 mb-6">
+            <div
+              class="w-12 h-12 bg-linear-to-br from-indigo-400 to-indigo-600 rounded-2xl flex items-center justify-center shadow-glow"
+            >
+              <Icon name="heroicons:radio" class="w-6 h-6 text-white" />
+            </div>
+            <div class="flex-1">
+              <h2 class="text-xl md:text-2xl font-display font-bold text-dark-900 dark:text-cream-100 mb-1">
+                WebRTC Technical Guide
+              </h2>
+              <p class="text-sm text-dark-600 dark:text-dark-300">
+                Complete technical notes on WebRTC, ICE, SDP, STUN, and TURN protocols
+              </p>
+            </div>
+            <div class="flex items-center text-indigo-600 dark:text-indigo-400">
+              <Icon name="heroicons:arrow-right" class="w-5 h-5" />
+            </div>
+          </div>
+
+          <p class="text-sm text-dark-500 dark:text-dark-400 leading-relaxed">
+            Comprehensive guide covering WebRTC fundamentals, NAT traversal techniques, ICE candidate gathering,
+            STUN/TURN server configurations, and production best practices for real-time communication.
+          </p>
+        </div>
+      </a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .shadow-card {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  .shadow-card-hover {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  }
+</style>
