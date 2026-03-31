@@ -65,7 +65,8 @@ export const ui = {
     'home.badge': "We're building something amazing",
     'home.title': 'Building Apps',
     'home.titleHighlight': 'That Matter',
-    'home.description': "We're a passionate startup team dedicated to creating innovative applications that solve real problems and make a genuine impact in people's lives.",
+    'home.description':
+      "We're a passionate startup team dedicated to building innovative mobile applications that solve real problems and make a genuine impact in people's lives.",
     'home.meetTeam': 'Meet Our Team',
     'home.readBlog': 'Read Our Blog',
 
@@ -78,7 +79,8 @@ export const ui = {
     // Home page - Features
     'home.features.title': 'Why Choose',
     'home.features.titleHighlight': 'Slice',
-    'home.features.subtitle': 'We combine cutting-edge technology with thoughtful design to create apps that users love.',
+    'home.features.subtitle':
+      'We combine cutting-edge technology with thoughtful design to create mobile apps that users love.',
     'home.features.fast.title': 'Lightning Fast',
     'home.features.fast.desc': 'We build apps that are optimized for speed and performance from day one.',
     'home.features.user.title': 'User Focused',
@@ -90,14 +92,15 @@ export const ui = {
 
     // Home page - Hero cards
     'home.card.mobile': 'Mobile Apps',
-    'home.card.web': 'Web Apps',
+    'home.card.platforms': 'iOS & Android',
     'home.card.growing': 'Growing Fast',
     'home.card.growingDesc': 'Scaling with our users',
 
     // Home page - CTA
     'home.cta.title': 'Ready to Build Something',
     'home.cta.titleHighlight': 'Amazing',
-    'home.cta.description': 'Join thousands of users who are already experiencing the future of app development with Slice.',
+    'home.cta.description':
+      'Join thousands of users who are already experiencing the future of mobile app development with Slice.',
     'home.cta.button': 'Get Started Today',
     'home.cta.learnMore': 'Learn More',
 
@@ -155,6 +158,27 @@ export const ui = {
     'faq.title': 'Frequently Asked',
     'faq.titleHighlight': 'Questions',
     'faq.subtitle': 'Find answers to common questions about Slice and our products.',
+    'faq.items.what.question': 'What is Slice and what do you do?',
+    'faq.items.what.answer':
+      'Slice is a startup focused on building innovative native mobile applications for iOS and Android that solve real-world problems. We combine thoughtful design with solid engineering to create products users love.',
+    'faq.items.started.question': 'How can I get started with your products?',
+    'faq.items.started.answer':
+      "Getting started is easy! Download our mobile app, sign up, and you'll have access to our features. We offer a free tier so you can explore before upgrading to a paid plan.",
+    'faq.items.custom.question': 'Do you offer custom development services?',
+    'faq.items.custom.answer':
+      'Yes! We work with businesses of all sizes to build custom mobile applications tailored to their needs. Contact us to discuss your project and get a personalized quote.',
+    'faq.items.security.question': 'How do you ensure the security of your applications?',
+    'faq.items.security.answer':
+      'Security is built into every layer of our development process. We follow industry best practices, conduct regular security audits, and implement encryption for all sensitive data. Your security is our top priority.',
+    'faq.items.support.question': 'What kind of support do you provide?',
+    'faq.items.support.answer':
+      'We offer 24/7 customer support through multiple channels including email, chat, and phone. Our dedicated support team is always ready to help you with any questions or issues.',
+    'faq.items.feature.question': 'Can I request new features?',
+    'faq.items.feature.answer':
+      'Absolutely! We love hearing from our users. You can submit feature requests through our feedback portal, and our product team reviews every suggestion to prioritize our roadmap.',
+    'faq.items.mobile.question': 'Do you offer a web or desktop version?',
+    'faq.items.mobile.answer':
+      'We focus on native mobile apps for iOS and Android. We do not offer a web or desktop client at this time.',
     'faq.cta.title': 'Still Have Questions?',
     'faq.cta.description': "Can't find what you're looking for? Our support team is here to help.",
     'faq.cta.email': 'Email Support',
@@ -227,7 +251,8 @@ export const ui = {
     'home.badge': 'Chúng tôi đang xây dựng điều tuyệt vời',
     'home.title': 'Xây dựng ứng dụng',
     'home.titleHighlight': 'Có ý nghĩa',
-    'home.description': 'Chúng tôi là đội ngũ startup đam mê, tận tâm tạo ra các ứng dụng sáng tạo giải quyết vấn đề thực tế và tạo ra tác động thực sự trong cuộc sống của mọi người.',
+    'home.description':
+      'Chúng tôi là đội ngũ startup đam mê, tận tâm xây dựng các ứng dụng di động sáng tạo giải quyết vấn đề thực tế và tạo ra tác động thực sự trong cuộc sống của mọi người.',
     'home.meetTeam': 'Gặp đội ngũ',
     'home.readBlog': 'Đọc Blog',
 
@@ -240,7 +265,8 @@ export const ui = {
     // Home page - Features
     'home.features.title': 'Tại sao chọn',
     'home.features.titleHighlight': 'Slice',
-    'home.features.subtitle': 'Chúng tôi kết hợp công nghệ tiên tiến với thiết kế chu đáo để tạo ra ứng dụng mà người dùng yêu thích.',
+    'home.features.subtitle':
+      'Chúng tôi kết hợp công nghệ tiên tiến với thiết kế chu đáo để tạo ra ứng dụng di động mà người dùng yêu thích.',
     'home.features.fast.title': 'Siêu nhanh',
     'home.features.fast.desc': 'Chúng tôi xây dựng ứng dụng được tối ưu hóa về tốc độ và hiệu suất ngay từ đầu.',
     'home.features.user.title': 'Tập trung người dùng',
@@ -252,14 +278,15 @@ export const ui = {
 
     // Home page - Hero cards
     'home.card.mobile': 'Ứng dụng di động',
-    'home.card.web': 'Ứng dụng web',
+    'home.card.platforms': 'iOS & Android',
     'home.card.growing': 'Phát triển nhanh',
     'home.card.growingDesc': 'Mở rộng cùng người dùng',
 
     // Home page - CTA
     'home.cta.title': 'Sẵn sàng xây dựng điều',
     'home.cta.titleHighlight': 'Tuyệt vời?',
-    'home.cta.description': 'Tham gia cùng hàng nghìn người dùng đang trải nghiệm tương lai của phát triển ứng dụng với Slice.',
+    'home.cta.description':
+      'Tham gia cùng hàng nghìn người dùng đang trải nghiệm tương lai của phát triển ứng dụng di động với Slice.',
     'home.cta.button': 'Bắt đầu ngay',
     'home.cta.learnMore': 'Tìm hiểu thêm',
 
@@ -317,6 +344,27 @@ export const ui = {
     'faq.title': 'Câu hỏi',
     'faq.titleHighlight': 'thường gặp',
     'faq.subtitle': 'Tìm câu trả lời cho các câu hỏi phổ biến về Slice và sản phẩm của chúng tôi.',
+    'faq.items.what.question': 'Slice là gì và các bạn làm gì?',
+    'faq.items.what.answer':
+      'Slice là startup tập trung xây dựng ứng dụng di động native cho iOS và Android để giải quyết vấn đề thực tế. Chúng tôi kết hợp thiết kế tinh tế với kỹ thuật vững để tạo ra sản phẩm được người dùng yêu thích.',
+    'faq.items.started.question': 'Làm thế nào để bắt đầu với sản phẩm của bạn?',
+    'faq.items.started.answer':
+      'Bắt đầu rất dễ! Tải ứng dụng di động, đăng ký tài khoản và bạn sẽ có quyền truy cập các tính năng. Chúng tôi có gói miễn phí để bạn trải nghiệm trước khi nâng cấp.',
+    'faq.items.custom.question': 'Bạn có cung cấp dịch vụ phát triển theo yêu cầu không?',
+    'faq.items.custom.answer':
+      'Có! Chúng tôi làm việc với doanh nghiệp ở mọi quy mô để xây dựng ứng dụng di động tùy chỉnh theo nhu cầu. Hãy liên hệ để trao đổi dự án và nhận báo giá phù hợp.',
+    'faq.items.security.question': 'Bạn đảm bảo bảo mật ứng dụng như thế nào?',
+    'faq.items.security.answer':
+      'Bảo mật được tích hợp trong mọi lớp của quy trình phát triển. Chúng tôi tuân thủ best practices, kiểm tra bảo mật định kỳ và mã hóa dữ liệu nhạy cảm. Bảo mật của bạn là ưu tiên hàng đầu.',
+    'faq.items.support.question': 'Bạn cung cấp hỗ trợ như thế nào?',
+    'faq.items.support.answer':
+      'Chúng tôi cung cấp hỗ trợ 24/7 qua nhiều kênh như email, chat và điện thoại. Đội hỗ trợ luôn sẵn sàng giúp bạn với mọi câu hỏi hoặc vấn đề.',
+    'faq.items.feature.question': 'Tôi có thể đề xuất tính năng mới không?',
+    'faq.items.feature.answer':
+      'Hoàn toàn có thể! Chúng tôi luôn lắng nghe người dùng. Bạn có thể gửi đề xuất qua cổng phản hồi và đội sản phẩm sẽ xem xét từng gợi ý để ưu tiên roadmap.',
+    'faq.items.mobile.question': 'Slice có bản web hoặc desktop không?',
+    'faq.items.mobile.answer':
+      'Chúng tôi tập trung ứng dụng di động native cho iOS và Android. Hiện không có bản web hay desktop.',
     'faq.cta.title': 'Vẫn còn câu hỏi?',
     'faq.cta.description': 'Không tìm thấy điều bạn cần? Đội hỗ trợ của chúng tôi sẵn sàng giúp đỡ.',
     'faq.cta.email': 'Hỗ trợ qua Email',
@@ -335,3 +383,4 @@ export const ui = {
   },
 } as const;
 
+export type TranslationKey = keyof typeof ui.en;

@@ -176,10 +176,10 @@ const stats = [
                   </p>
                 </div>
                 <div
-                  class="bg-linear-to-br from-dark-50 to-dark-100 dark:from-dark-700 dark:to-dark-600 rounded-2xl p-6 text-center"
+                  class="bg-linear-to-br from-slice-50 to-slice-100 dark:from-slice-900/30 dark:to-slice-800/30 rounded-2xl p-6 text-center"
                 >
                   <div
-                    class="w-12 h-12 bg-dark-900 rounded-xl mx-auto mb-3 flex items-center justify-center"
+                    class="w-12 h-12 bg-slice-600 rounded-xl mx-auto mb-3 flex items-center justify-center"
                   >
                     <svg
                       class="w-6 h-6 text-white"
@@ -191,14 +191,14 @@ const stats = [
                         stroke-linecap="round"
                         stroke-linejoin="round"
                         stroke-width="2"
-                        d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                        d="M12 18h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
                       ></path>
                     </svg>
                   </div>
                   <p
                     class="font-display font-bold text-dark-900 dark:text-cream-100"
                   >
-                    {t("home.card.web")}
+                    {t("home.card.platforms")}
                   </p>
                 </div>
                 <div
@@ -277,23 +277,18 @@ const stats = [
         {
           features.map((feature, index) => (
             <div
-              class="card group card-feature-blink relative overflow-hidden hover:scale-[1.02] hover:-translate-y-2 transition-all duration-300"
+              class="card group card-feature-blink relative overflow-hidden hover:scale-[1.012] hover:-translate-y-1"
               data-reveal
               style={{
-                animationDelay: `${index * 0.35}s`,
                 "--reveal-delay": `${index * 90}ms`,
               }}
             >
               <div
-                class="card-feature-blink-blob absolute top-0 right-0 w-28 h-28 bg-linear-to-br from-slice-400/20 to-transparent rounded-full blur-2xl z-0 pointer-events-none group-hover:w-36 group-hover:h-36 transition-all duration-300"
-                style={{ animationDelay: `${index * 0.35}s` }}
+                class="card-feature-blink-blob absolute -top-2 -right-2 w-24 h-24 rounded-full bg-slice-400/15 dark:bg-slice-400/10 z-0 pointer-events-none transition-transform duration-500 ease-out group-hover:scale-105"
                 aria-hidden="true"
               />
               <div class="relative z-10">
-                <div
-                  class="card-feature-blink-icon w-14 h-14 bg-linear-to-br from-slice-400 to-slice-600 rounded-2xl flex items-center justify-center text-white mb-6 shadow-glow group-hover:shadow-glow-lg transition-all duration-300"
-                  style={{ animationDelay: `${index * 0.35}s` }}
-                >
+                <div class="card-feature-blink-icon w-14 h-14 bg-linear-to-br from-slice-400 to-slice-600 rounded-2xl flex items-center justify-center text-white mb-6 shadow-glow transition-transform duration-500 ease-out group-hover:scale-[1.04]">
                   <Icon name={feature.icon} class="w-6 h-6" />
                 </div>
                 <h3 class="font-display text-xl font-bold text-dark-900 dark:text-cream-100 mb-3">
@@ -311,7 +306,7 @@ const stats = [
   </section>
 
   <section
-    class="py-24 bg-dark-900 dark:bg-dark-800 text-white relative overflow-hidden"
+    class="py-24 bg-cream-100 dark:bg-dark-800 text-dark-900 dark:text-white relative overflow-hidden"
   >
     <div class="absolute inset-0 opacity-10">
       <div
@@ -332,7 +327,9 @@ const stats = [
         {t("home.cta.title")}
         <span class="text-slice-400">{t("home.cta.titleHighlight")}</span>?
       </h2>
-      <p class="text-xl text-dark-300 mb-10 max-w-2xl mx-auto">
+      <p
+        class="text-xl text-dark-600 dark:text-dark-300 mb-10 max-w-2xl mx-auto"
+      >
         {t("home.cta.description")}
       </p>
       <div class="flex flex-wrap justify-center gap-4">
@@ -353,7 +350,7 @@ const stats = [
         </a>
         <a
           href={getLocalizedPath("/faq", lang)}
-          class="inline-flex items-center justify-center px-6 py-3 border-2 border-white/30 text-white font-medium rounded-full hover:bg-white/10 transition-all duration-300"
+          class="inline-flex items-center justify-center px-6 py-3 border-2 border-dark-900/20 dark:border-white/30 text-dark-800 dark:text-white font-medium rounded-full hover:bg-dark-900/5 dark:hover:bg-white/10 transition-all duration-300"
         >
           {t("home.cta.learnMore")}
         </a>
@@ -377,7 +374,7 @@ const stats = [
             }
           }
         },
-        { root: null, rootMargin: "0px 0px -10% 0px", threshold: 0.08 }
+        { root: null, rootMargin: "0px 0px -10% 0px", threshold: 0.08 },
       );
       nodes.forEach((el) => {
         if (!(el instanceof HTMLElement)) return;

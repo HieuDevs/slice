@@ -1,4 +1,4 @@
-import { ui, languages, defaultLang, type Language } from './ui';
+import { ui, languages, defaultLang, type Language, type TranslationKey } from './ui';
 import { getCookieValue } from '../utils/cookie';
 
 const supportedLanguages = Object.keys(languages);
@@ -10,7 +10,7 @@ export function getLangFromUrl(url: URL): Language {
 }
 
 export function useTranslations(lang: Language) {
-  return function t(key: keyof typeof ui[typeof defaultLang]): string {
+  return function t(key: TranslationKey): string {
     return ui[lang][key] || ui[defaultLang][key];
   };
 }
