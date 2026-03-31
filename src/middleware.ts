@@ -3,7 +3,7 @@ import { defaultLang, isValidLanguage } from '@/i18n';
 import { verifyToken, getTokenFromRequest } from './utils/jwt';
 import { getUserById } from './db/turso';
 
-const protectedRoutes = ['/internal', '/users', '/app-naming-workshop'];
+const protectedRoutes = ['/internal', '/users'];
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const { pathname } = context.url;

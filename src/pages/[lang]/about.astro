@@ -9,11 +9,11 @@ import {
 } from "@/i18n";
 
 const teamImages = import.meta.glob<{ default: ImageMetadata }>(
-  "../../assets/test_*.png",
-  { eager: true }
+  "../../assets/*.jpg",
+  { eager: true },
 );
-const [test0, test1, test2, test3, test4] = Object.values(teamImages).map(
-  (img) => img.default
+const [hieu, hung, nhi, phu, son] = Object.values(teamImages).map(
+  (img) => img.default,
 );
 
 export const prerender = true;
@@ -33,71 +33,61 @@ const teamMembers = [
     name: "Hieu Bui",
     role: "CTO & Founder",
     bioKey: "about.team.hieu.bio",
-    image: test0.src,
+    image: hieu.src,
     social: {
       twitter: "#",
       linkedin: "#",
       github: "#",
     },
     color: "from-slice-400 to-slice-600",
-    borderColor: "border-slice-400",
-    borderHoverColor: "group-hover:border-slice-500",
   },
   {
     name: "Nhi Bao",
     role: "Marketing Manager",
     bioKey: "about.team.nhi.bio",
-    image: test1.src,
+    image: nhi.src,
     social: {
       twitter: "#",
       linkedin: "#",
       github: "#",
     },
     color: "from-purple-400 to-purple-600",
-    borderColor: "border-purple-400",
-    borderHoverColor: "group-hover:border-purple-500",
   },
   {
     name: "Hung Ngo",
     role: "Marketing Leader",
     bioKey: "about.team.hung.bio",
-    image: test2.src,
+    image: hung.src,
     social: {
       twitter: "#",
       linkedin: "#",
       github: "#",
     },
     color: "from-emerald-400 to-emerald-600",
-    borderColor: "border-emerald-400",
-    borderHoverColor: "group-hover:border-emerald-500",
   },
   {
     name: "Son Minh",
     role: "Designer",
     bioKey: "about.team.son.bio",
-    image: test3.src,
+    image: son.src,
     social: {
       twitter: "#",
       linkedin: "#",
       github: "#",
     },
     color: "from-rose-400 to-rose-600",
-    borderColor: "border-rose-400",
-    borderHoverColor: "group-hover:border-rose-500",
   },
   {
     name: "Phu Minh",
     role: "Designer",
     bioKey: "about.team.phu.bio",
-    image: test4.src,
+    image: phu.src,
     social: {
       twitter: "#",
       linkedin: "#",
       github: "#",
     },
     color: "from-blue-400 to-blue-600",
-    borderColor: "border-blue-400",
-    borderHoverColor: "group-hover:border-blue-500",
   },
 ];
 
@@ -137,7 +127,9 @@ const values = [
     >
     </div>
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div
+      class="relative w-full max-w-[1920px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16 2xl:px-20"
+    >
       <div class="text-center mb-20">
         <div
           class="inline-flex items-center gap-2 px-4 py-2 bg-slice-100 dark:bg-slice-900/30 rounded-full text-slice-700 dark:text-slice-400 font-medium text-sm mb-6 opacity-0 animate-fade-in"
@@ -160,73 +152,109 @@ const values = [
     </div>
   </section>
 
-  <section class="py-20 bg-cream-50 dark:bg-dark-950">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section
+    class="py-16 lg:py-24 bg-linear-to-b from-cream-50 via-white to-cream-50 dark:from-dark-950 dark:via-dark-900 dark:to-dark-950 border-y border-cream-200/70 dark:border-dark-800"
+  >
+    <div
+      class="w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-11 xl:px-14 2xl:px-16"
+    >
       <div
-        class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 lg:gap-5"
+        class="mb-10 lg:mb-12 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 lg:gap-9"
+      >
+        <div class="max-w-2xl">
+          <p
+            class="text-[11px] sm:text-xs uppercase tracking-[0.2em] text-slice-600 dark:text-slice-400 font-semibold mb-2.5"
+          >
+            {t("about.team.stripeEyebrow")}
+          </p>
+          <h2
+            class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-dark-900 dark:text-cream-100 tracking-tight"
+          >
+            {t("about.team.stripeTitle")}
+          </h2>
+        </div>
+        <p
+          class="text-dark-500 dark:text-dark-400 text-sm sm:text-base leading-relaxed max-w-lg lg:max-w-xl lg:text-right"
+        >
+          {t("about.team.stripeSub")}
+        </p>
+      </div>
+
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-y-8 gap-x-6 lg:gap-x-7 xl:gap-x-9"
       >
         {
           teamMembers.map((member, index) => (
-            <div
-              class="group relative opacity-0 animate-slide-up"
+            <article
+              class="group relative aspect-3/4 rounded-2xl overflow-hidden ring-1 ring-dark-900/5 dark:ring-white/10 shadow-sm hover:ring-slice-400/40 dark:hover:ring-slice-500/30 hover:shadow-card-hover transition-all duration-300 opacity-0 animate-slide-up focus-within:ring-slice-400/50 focus-within:shadow-card-hover outline-none focus-visible:ring-2 focus-visible:ring-slice-400/55 focus-visible:ring-offset-2 focus-visible:ring-offset-cream-50 dark:focus-visible:ring-offset-dark-950"
               style={`animation-delay: ${index * 100}ms`}
+              tabindex="0"
             >
+              <img
+                src={member.image}
+                alt={member.name}
+                class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.03] group-focus-within:scale-[1.03]"
+                loading="lazy"
+                decoding="async"
+              />
               <div
-                class={`relative rounded-xl overflow-hidden shadow-card group-hover:shadow-card-hover transition-all duration-500 border-2 border-transparent ${member.borderHoverColor} aspect-3/4`}
+                class="absolute inset-0 bg-linear-to-t from-black/45 via-black/10 to-transparent pointer-events-none transition-opacity duration-500 group-hover:from-black/55 group-focus-within:from-black/55"
+                aria-hidden="true"
+              />
+              <div
+                class="absolute inset-x-0 bottom-0 flex flex-col backdrop-blur-[6px] sm:backdrop-blur-md bg-white/14 dark:bg-black/18 border-t border-white/25 shadow-[0_-4px_28px_rgba(0,0,0,0.12)] transition-[max-height,backdrop-filter,background-color] duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] max-h-[28%] min-h-21 group-hover:max-h-[92%] group-hover:min-h-0 group-hover:bg-white/24 group-hover:backdrop-blur-lg group-hover:dark:bg-black/28 group-focus-within:max-h-[92%] group-focus-within:min-h-0 group-focus-within:bg-white/24 group-focus-within:backdrop-blur-lg group-focus-within:dark:bg-black/28"
               >
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  class="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110"
-                />
-                <div class="absolute bottom-0 left-0 right-0 backdrop-blur-md bg-black/40 p-4">
-                  <div class="flex flex-col items-center text-center">
-                    <h3 class="font-display text-lg font-bold text-white mb-1">
-                      {member.name}
-                    </h3>
-                    <p class="text-white/90 text-xs font-medium mb-2">
-                      {member.role}
-                    </p>
-                    <p class="text-white/80 text-xs leading-relaxed mb-3">
-                      {t(member.bioKey as any)}
-                    </p>
-                  </div>
-
-                  <div class="flex justify-center gap-2 pt-3 border-t border-white/20">
+                <div class="flex flex-col flex-1 min-h-0 p-4 sm:p-5 text-left">
+                  <h3
+                    class="font-display text-base sm:text-lg font-bold text-white mb-0.5 shrink-0 [text-shadow:0_1px_3px_rgba(0,0,0,0.85)]"
+                  >
+                    {member.name}
+                  </h3>
+                  <p
+                    class={`text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.14em] bg-linear-to-r ${member.color} bg-clip-text text-transparent mb-0 shrink-0 group-hover:mb-2 group-focus-within:mb-2`}
+                  >
+                    {member.role}
+                  </p>
+                  <p
+                    class="hidden text-white/92 text-xs sm:text-sm leading-relaxed overflow-y-auto overscroll-contain scrollbar-none mb-3 flex-1 min-h-0 [text-shadow:0_1px_2px_rgba(0,0,0,0.75)] group-hover:block group-focus-within:block"
+                  >
+                    {t(member.bioKey as any)}
+                  </p>
+                  <div class="hidden justify-start gap-2 pt-3 mt-auto border-t border-white/20 shrink-0 group-hover:flex group-focus-within:flex">
                     <a
                       href={member.social.twitter}
-                      class="w-8 h-8 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center text-white transition-all duration-300 group/social"
+                      class="w-9 h-9 bg-white/18 hover:bg-white/28 rounded-lg flex items-center justify-center text-white hover:text-white transition-colors duration-200 group/social [box-shadow:0_1px_2px_rgba(0,0,0,0.35)]"
                       aria-label="Twitter"
                     >
                       <Icon
                         name="simple-icons:x"
-                        class="w-4 h-4 transition-transform duration-300 group-hover/social:scale-110"
+                        class="w-[17px] h-[17px] transition-transform duration-300 group-hover/social:scale-110"
                       />
                     </a>
                     <a
                       href={member.social.linkedin}
-                      class="w-8 h-8 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center text-white transition-all duration-300 group/social"
+                      class="w-9 h-9 bg-white/18 hover:bg-white/28 rounded-lg flex items-center justify-center text-white hover:text-white transition-colors duration-200 group/social [box-shadow:0_1px_2px_rgba(0,0,0,0.35)]"
                       aria-label="LinkedIn"
                     >
                       <Icon
                         name="simple-icons:linkedin"
-                        class="w-4 h-4 transition-transform duration-300 group-hover/social:scale-110"
+                        class="w-[17px] h-[17px] transition-transform duration-300 group-hover/social:scale-110"
                       />
                     </a>
                     <a
                       href={member.social.github}
-                      class="w-8 h-8 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center text-white transition-all duration-300 group/social"
+                      class="w-9 h-9 bg-white/18 hover:bg-white/28 rounded-lg flex items-center justify-center text-white hover:text-white transition-colors duration-200 group/social [box-shadow:0_1px_2px_rgba(0,0,0,0.35)]"
                       aria-label="GitHub"
                     >
                       <Icon
                         name="simple-icons:github"
-                        class="w-4 h-4 transition-transform duration-300 group-hover/social:scale-110"
+                        class="w-[17px] h-[17px] transition-transform duration-300 group-hover/social:scale-110"
                       />
                     </a>
                   </div>
                 </div>
               </div>
-            </div>
+            </article>
           ))
         }
       </div>

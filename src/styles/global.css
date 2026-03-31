@@ -36,6 +36,24 @@
     @apply bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-card transition-all duration-300 hover:shadow-card-hover;
   }
 
+  .card-feature-blink {
+    border-width: 2px;
+    border-style: solid;
+    animation: card-feature-blink-light 3s ease-in-out infinite;
+  }
+
+  .dark .card-feature-blink {
+    animation-name: card-feature-blink-dark;
+  }
+
+  .card-feature-blink-blob {
+    animation: card-feature-blink-blob 3s ease-in-out infinite;
+  }
+
+  .card-feature-blink-icon {
+    animation: card-feature-blink-icon 3s ease-in-out infinite;
+  }
+
   .section-title {
     @apply font-display text-4xl md:text-5xl lg:text-6xl font-bold text-dark-900 dark:text-cream-100 tracking-tight;
   }
@@ -87,6 +105,37 @@
   .animation-delay-600 {
     animation-delay: 600ms;
   }
+
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(1.25rem);
+    transition:
+      opacity 0.6s ease-out,
+      transform 0.6s ease-out;
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  [data-reveal].reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
 }
 
 /* View Transitions - Smooth page transitions */
@@ -119,6 +168,100 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes card-feature-blink-light {
+  0%,
+  100% {
+    border-color: rgba(238, 118, 32, 0.14);
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.1);
+  }
+  18% {
+    border-color: rgba(238, 118, 32, 0.55);
+    box-shadow:
+      0 4px 20px -2px rgba(0, 0, 0, 0.1),
+      0 0 24px rgba(241, 147, 64, 0.22);
+  }
+  36% {
+    border-color: rgba(238, 118, 32, 0.12);
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.1);
+  }
+  54% {
+    border-color: rgba(238, 118, 32, 0.5);
+    box-shadow:
+      0 4px 20px -2px rgba(0, 0, 0, 0.1),
+      0 0 22px rgba(241, 147, 64, 0.2);
+  }
+  72% {
+    border-color: rgba(238, 118, 32, 0.14);
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@keyframes card-feature-blink-dark {
+  0%,
+  100% {
+    border-color: rgba(241, 147, 64, 0.22);
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
+  }
+  18% {
+    border-color: rgba(241, 147, 64, 0.65);
+    box-shadow:
+      0 4px 20px -2px rgba(0, 0, 0, 0.4),
+      0 0 28px rgba(238, 118, 32, 0.28);
+  }
+  36% {
+    border-color: rgba(241, 147, 64, 0.2);
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
+  }
+  54% {
+    border-color: rgba(241, 147, 64, 0.58);
+    box-shadow:
+      0 4px 20px -2px rgba(0, 0, 0, 0.38),
+      0 0 26px rgba(238, 118, 32, 0.24);
+  }
+  72% {
+    border-color: rgba(241, 147, 64, 0.22);
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
+  }
+}
+
+@keyframes card-feature-blink-icon {
+  0%,
+  100% {
+    filter: brightness(1) saturate(1);
+  }
+  18% {
+    filter: brightness(1.15) saturate(1.2);
+  }
+  36% {
+    filter: brightness(1) saturate(1);
+  }
+  54% {
+    filter: brightness(1.12) saturate(1.15);
+  }
+  72% {
+    filter: brightness(1) saturate(1);
+  }
+}
+
+@keyframes card-feature-blink-blob {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  18% {
+    opacity: 0.85;
+  }
+  36% {
+    opacity: 0.35;
+  }
+  54% {
+    opacity: 0.75;
+  }
+  72% {
+    opacity: 0.35;
   }
 }
 

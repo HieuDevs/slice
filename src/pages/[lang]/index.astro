@@ -244,7 +244,11 @@ const stats = [
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
         {
           stats.map((stat, index) => (
-            <div class="text-center">
+            <div
+              class="text-center"
+              data-reveal
+              style={{ "--reveal-delay": `${index * 70}ms` }}
+            >
               <p class="font-display text-4xl md:text-5xl font-bold gradient-text">
                 {stat.value}
               </p>
@@ -258,7 +262,7 @@ const stats = [
 
   <section class="py-24 bg-cream-50 dark:bg-dark-950">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
+      <div class="text-center mb-16" data-reveal>
         <h2 class="section-title mb-4">
           {t("home.features.title")}
           <span class="gradient-text">{t("home.features.titleHighlight")}</span
@@ -272,16 +276,33 @@ const stats = [
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
         {
           features.map((feature, index) => (
-            <div class="card group hover:-translate-y-2">
-              <div class="w-14 h-14 bg-slice-100 dark:bg-slice-900/30 rounded-2xl flex items-center justify-center text-slice-600 dark:text-slice-400 mb-6 group-hover:bg-slice-500 group-hover:text-white transition-all duration-300">
-                <Icon name={feature.icon} class="w-6 h-6" />
+            <div
+              class="card group card-feature-blink relative overflow-hidden hover:scale-[1.02] hover:-translate-y-2 transition-all duration-300"
+              data-reveal
+              style={{
+                animationDelay: `${index * 0.35}s`,
+                "--reveal-delay": `${index * 90}ms`,
+              }}
+            >
+              <div
+                class="card-feature-blink-blob absolute top-0 right-0 w-28 h-28 bg-linear-to-br from-slice-400/20 to-transparent rounded-full blur-2xl z-0 pointer-events-none group-hover:w-36 group-hover:h-36 transition-all duration-300"
+                style={{ animationDelay: `${index * 0.35}s` }}
+                aria-hidden="true"
+              />
+              <div class="relative z-10">
+                <div
+                  class="card-feature-blink-icon w-14 h-14 bg-linear-to-br from-slice-400 to-slice-600 rounded-2xl flex items-center justify-center text-white mb-6 shadow-glow group-hover:shadow-glow-lg transition-all duration-300"
+                  style={{ animationDelay: `${index * 0.35}s` }}
+                >
+                  <Icon name={feature.icon} class="w-6 h-6" />
+                </div>
+                <h3 class="font-display text-xl font-bold text-dark-900 dark:text-cream-100 mb-3">
+                  {feature.title}
+                </h3>
+                <p class="text-dark-500 dark:text-dark-400 leading-relaxed">
+                  {feature.description}
+                </p>
               </div>
-              <h3 class="font-display text-xl font-bold text-dark-900 dark:text-cream-100 mb-3">
-                {feature.title}
-              </h3>
-              <p class="text-dark-500 dark:text-dark-400 leading-relaxed">
-                {feature.description}
-              </p>
             </div>
           ))
         }
@@ -303,7 +324,10 @@ const stats = [
       </div>
     </div>
 
-    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div
+      class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+      data-reveal
+    >
       <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">
         {t("home.cta.title")}
         <span class="text-slice-400">{t("home.cta.titleHighlight")}</span>?
@@ -336,4 +360,33 @@ const stats = [
       </div>
     </div>
   </section>
+
+  <script>
+    function initRevealOnScroll() {
+      const nodes = document.querySelectorAll("[data-reveal]");
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        nodes.forEach((el) => el.classList.add("reveal-visible"));
+        return;
+      }
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("reveal-visible");
+              io.unobserve(entry.target);
+            }
+          }
+        },
+        { root: null, rootMargin: "0px 0px -10% 0px", threshold: 0.08 }
+      );
+      nodes.forEach((el) => {
+        if (!(el instanceof HTMLElement)) return;
+        if (el.dataset.revealBound === "1") return;
+        el.dataset.revealBound = "1";
+        if (!el.classList.contains("reveal-visible")) io.observe(el);
+      });
+    }
+    initRevealOnScroll();
+    document.addEventListener("astro:page-load", initRevealOnScroll);
+  </script>
 </Layout>
