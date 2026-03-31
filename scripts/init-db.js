@@ -224,7 +224,7 @@ async function seedDatabase(client) {
 async function initDatabase() {
   // Skip on CI unless explicitly enabled
   if (isCI && !shouldRunDbInitOnCI) {
-    console.log('⚠️ Skipping database initialization on CI/Vercel');
+    console.log('Skipping database initialization on CI/Vercel');
     process.exit(0);
   }
 
