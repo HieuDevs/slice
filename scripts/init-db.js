@@ -39,8 +39,13 @@ function loadEnvFile() {
 const envVars = loadEnvFile();
 const TURSO_DATABASE_URL = envVars.TURSO_DATABASE_URL || process.env.TURSO_DATABASE_URL;
 const TURSO_AUTH_TOKEN = envVars.TURSO_AUTH_TOKEN || process.env.TURSO_AUTH_TOKEN;
+const isVercelOrCiBuild = process.env.VERCEL === '1' || process.env.CI === 'true';
 
 if (!TURSO_DATABASE_URL || !TURSO_AUTH_TOKEN) {
+  if (isVercelOrCiBuild) {
+    console.warn('⚠️ Skipping database initialization on CI/Vercel: missing TURSO_DATABASE_URL or TURSO_AUTH_TOKEN');
+    process.exit(0);
+  }
   console.error('❌ Missing required environment variables: TURSO_DATABASE_URL and TURSO_AUTH_TOKEN');
   process.exit(1);
 }
