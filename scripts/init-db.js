@@ -8,6 +8,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
+const isVercelOrCiBuild =
+  process.env.VERCEL === '1' ||
+  process.env.CI === 'true' ||
+  process.env.CI === '1';
+const shouldRunDbInitOnCi = process.env.RUN_DB_INIT_ON_BUILD === 'true';
 
 function loadEnvFile() {
   const envFileName = NODE_ENV === 'production' ? '.env' : '.env.local';
@@ -39,13 +44,13 @@ function loadEnvFile() {
 const envVars = loadEnvFile();
 const TURSO_DATABASE_URL = envVars.TURSO_DATABASE_URL || process.env.TURSO_DATABASE_URL;
 const TURSO_AUTH_TOKEN = envVars.TURSO_AUTH_TOKEN || process.env.TURSO_AUTH_TOKEN;
-const isVercelOrCiBuild = process.env.VERCEL === '1' || process.env.CI === 'true';
+
+if (isVercelOrCiBuild && !shouldRunDbInitOnCi) {
+  console.warn('⚠️ Skipping database initialization on CI/Vercel');
+  process.exit(0);
+}
 
 if (!TURSO_DATABASE_URL || !TURSO_AUTH_TOKEN) {
-  if (isVercelOrCiBuild) {
-    console.warn('⚠️ Skipping database initialization on CI/Vercel: missing TURSO_DATABASE_URL or TURSO_AUTH_TOKEN');
-    process.exit(0);
-  }
   console.error('❌ Missing required environment variables: TURSO_DATABASE_URL and TURSO_AUTH_TOKEN');
   process.exit(1);
 }
