@@ -6,4 +6,6 @@ export const PATH_MAP = {
     BLOGS: "/blogs",
     ABOUT: "/about",
     FAQ: "/faq",
+    PRIVACY_POLICY: "/privacy-policy",
+    TERMS_OF_SERVICE: "/terms-of-service",
 } as const;

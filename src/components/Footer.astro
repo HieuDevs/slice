@@ -114,10 +114,10 @@ const footerLinks = {
         {t("footer.copyright").replace("{year}", String(currentYear))}
       </p>
       <div class="flex gap-6 text-sm text-dark-500 dark:text-dark-400">
-        <a href="#" class="hover:text-slice-400 transition-colors"
+        <a href={getLocalizedPath("/privacy-policy", lang)} class="hover:text-slice-400 transition-colors"
           >{t("footer.privacy")}</a
         >
-        <a href="#" class="hover:text-slice-400 transition-colors"
+        <a href={getLocalizedPath("/terms-of-service", lang)} class="hover:text-slice-400 transition-colors"
           >{t("footer.terms")}</a
         >
       </div>
